@@ -1,0 +1,34 @@
+.background {
+  background: linear-gradient(90deg, #fff5af, #ffaaf8);
+}
+
+.cart_with_bag {
+  margin-left: 20px;
+  animation: slide-up 1.5s ease-in-out;
+}
+
+@keyframes slide-up {
+  0% {
+    transform: translateY(300px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+.shoes_1,
+.shoes_2 {
+  transform: rotate(-10deg);
+  animation: slide-right 1.5s ease-in-out;
+}
+
+@keyframes slide-right {
+  0% {
+    transform: rotate(-10deg);
+    transform: translateX(-300px);
+  }
+  100% {
+    transform: rotate(-10deg);
+    transform: translateX(0);
+  }
+}

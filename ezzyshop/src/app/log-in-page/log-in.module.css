@@ -1,0 +1,47 @@
+.background {
+  background: linear-gradient(90deg, #ffaaf8, #fff5af);
+}
+
+.tShirt {
+  animation: slide-up 1.5s ease-in-out;
+}
+
+@keyframes slide-up {
+  0% {
+    transform: translateY(250px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+.google_log_in {
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 10px;
+  gap: 10px;
+  margin-bottom: 20px;
+  border-radius: 8px;
+}
+
+.cart_animation {
+  margin-left: 20px;
+  animation: slide-right 1.5s ease-in-out;
+}
+
+@keyframes slide-right {
+  0% {
+    transform: translateX(-200px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@media (min-width: 768px) {
+  .background {
+    background-color: #ffaaf8;
+  }
+}
