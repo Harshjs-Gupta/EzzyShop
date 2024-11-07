@@ -1,13 +1,25 @@
-"use client";
-import { createContext, ReactNode, useContext, useState } from "react";
+import {
+  createContext,
+  Dispatch,
+  ReactNode,
+  SetStateAction,
+  useContext,
+  useState,
+} from "react";
 
 interface LayoutProps {
   children: ReactNode;
 }
 
-const LoadingContext = createContext({
+interface LoadingContextType {
+  loading: boolean;
+  setLoading: Dispatch<SetStateAction<boolean>>;
+}
+
+// Define the initial context with the correct type
+const LoadingContext = createContext<LoadingContextType>({
   loading: false,
-  setLoading: (state: boolean) => {},
+  setLoading: () => {}, // This is a placeholder; the actual function will be provided by the provider
 });
 
 export const LoadingProvider = ({ children }: LayoutProps) => {
