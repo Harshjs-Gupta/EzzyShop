@@ -1,3 +1,5 @@
+"use client"; // Add this at the very top
+
 import {
   createContext,
   Dispatch,
