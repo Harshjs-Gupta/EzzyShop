@@ -2,10 +2,21 @@
 import { useEffect, useState } from "react";
 import SlugComponent from "./slugComponent";
 
-// Define the expected type for the product items
+interface PriceDetails {
+  before_price: number;
+  current_price: number;
+  savings_amount: number;
+}
+
 interface Product {
   asin: string;
-  // Add other properties of a product if needed
+  title: string;
+  thumbnail: string;
+  reviews: {
+    rating: number;
+  };
+  price: PriceDetails;
+  length: number;
 }
 
 interface ProductsResponse {

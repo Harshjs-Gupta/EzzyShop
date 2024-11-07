@@ -1,9 +1,11 @@
-"use client";
 import Image from "next/image";
 import StartRating from "../StartRating/startRating";
 import info from "@/assets/icon/info.png";
 
-// Defining a more specific type for the props.
+interface Props {
+  products: Product; // Single Product, not an array
+}
+
 interface PriceDetails {
   before_price: number;
   current_price: number;
@@ -19,20 +21,15 @@ interface Product {
   price: PriceDetails;
 }
 
-interface Props {
-  products: Product[]; // Array of valid Product objects
-}
-
 const SlugComponent: React.FC<Props> = ({ products }: Props) => {
-  // Extract product price details for easier reference
-  const product = products[0]; // Assuming we are displaying the first product (you can adjust as needed)
-  const { before_price, current_price, savings_amount } = product.price;
+  // Directly access `products` without indexing
+  const { title, thumbnail, reviews, price } = products;
+  const { before_price, current_price, savings_amount } = price;
 
   const discountPercentage = before_price
     ? ((before_price - current_price) / before_price) * 100
     : 0;
 
-  // Avoiding -Infinity or NaN values for discount
   const discount =
     isNaN(discountPercentage) || !isFinite(discountPercentage)
       ? 0
@@ -42,8 +39,8 @@ const SlugComponent: React.FC<Props> = ({ products }: Props) => {
     <div className="flex w-full border border-gray-400 bg-[#ffdcdc]">
       <div className="flex h-64 w-72 items-center justify-center bg-[#ffffff] object-cover">
         <Image
-          src={product.thumbnail}
-          alt={`${product.title} image`}
+          src={thumbnail}
+          alt={`${title} image`}
           className="h-auto w-auto"
           width={150}
           height={100}
@@ -56,12 +53,8 @@ const SlugComponent: React.FC<Props> = ({ products }: Props) => {
             <span className="text-sm">Sponsored</span>
             <Image src={info} alt="info" className="h-5 w-5" />
           </div>
-          <span className="font-semibold">{product.title}</span>
-          <StartRating
-            defaultRating={product.reviews.rating}
-            size={20}
-            maxRating={5}
-          />
+          <span className="font-semibold">{title}</span>
+          <StartRating defaultRating={reviews.rating} size={20} maxRating={5} />
           <div className="flex items-center gap-1">
             <span className="text-3xl font-bold">{`Rs ${current_price}`}</span>
             {before_price !== 0 && (
