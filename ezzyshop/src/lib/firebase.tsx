@@ -1,10 +1,13 @@
 "use client";
+
 import { getAuth, GoogleAuthProvider } from "firebase/auth";
 import { initializeApp } from "firebase/app";
-import { getAnalytics } from "firebase/analytics";
+import { getAnalytics, isSupported } from "firebase/analytics";
 import { getStorage } from "firebase/storage";
 import { getFirestore } from "firebase/firestore";
+import { useEffect } from "react";
 
+// Firebase configuration
 const firebaseConfig = {
   apiKey: "AIzaSyB7As2ZzOIA98XihRH1r0w_0DKfjMuI-ks",
   authDomain: "ezzyshop-58181.firebaseapp.com",
@@ -15,9 +18,27 @@ const firebaseConfig = {
   measurementId: "G-PBN0LF0H9W",
 };
 
+// Initialize Firebase services
 const app = initializeApp(firebaseConfig);
-export const analytics = getAnalytics(app);
 export const provider = new GoogleAuthProvider();
 export const auth = getAuth();
 export const database = getFirestore(app);
-export const storage = getStorage();
+export const storage = getStorage(app);
+
+// React component for initializing Analytics
+export function FirebaseAnalyticsInitializer() {
+  useEffect(() => {
+    const initializeAnalytics = async () => {
+      if (typeof window !== "undefined") {
+        // Check if we're in the browser
+        const supported = await isSupported();
+        if (supported) {
+          getAnalytics(app);
+        }
+      }
+    };
+    initializeAnalytics();
+  }, []);
+
+  return null; // This component doesn't render anything
+}
