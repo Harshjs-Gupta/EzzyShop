@@ -1,3 +1,4 @@
+"use client";
 import { getAuth, GoogleAuthProvider } from "firebase/auth";
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
