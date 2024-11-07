@@ -1,4 +1,5 @@
 "use client";
+
 import Image from "next/image";
 import style from "./log-in.module.css";
 import appName from "@/assets/logo/appName.png";
@@ -15,7 +16,7 @@ function LogInPage() {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
-  const navigate = useRouter();
+  const router = useRouter();
 
   const handleGoogleAuth = () => {
     signInWithPopup(auth, provider)
@@ -24,11 +25,11 @@ function LogInPage() {
         const email = data.user.email;
         if (email) {
           setEmail(email);
-          localStorage.setItem("email", email); // Store user email in localStorage
+          localStorage.setItem("email", email);
         } else {
           toast.error("No email associated with this account.");
-        } // Store user email in localStorage
-        navigate.push("/home-page");
+        }
+        router.push("/home-page");
       })
       .catch((err) => {
         console.log(err);
@@ -39,9 +40,9 @@ function LogInPage() {
   useEffect(() => {
     const storedEmail = localStorage.getItem("email");
     if (storedEmail) {
-      navigate.push("/home-page");
+      router.push("/home-page");
     }
-  }, [email, navigate]);
+  }, [router]);
 
   async function handleLogin(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -49,16 +50,15 @@ function LogInPage() {
     const formData = new FormData(e.currentTarget);
 
     const { email, password } = Object.fromEntries(formData.entries()) as {
-      username: string;
       email: string;
       password: string;
     };
 
     try {
       await signInWithEmailAndPassword(auth, email, password);
-      toast.success("You log in Successfully!");
-      navigate.push("/home-page");
-    } catch (err) {
+      toast.success("You logged in Successfully!");
+      router.push("/home-page");
+    } catch (err: unknown) {
       if (err instanceof Error) {
         console.log(err);
         toast.error(err.message);
@@ -130,4 +130,5 @@ function LogInPage() {
     </div>
   );
 }
+
 export default LogInPage;
