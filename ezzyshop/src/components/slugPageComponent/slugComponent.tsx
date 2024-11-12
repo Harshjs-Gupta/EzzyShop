@@ -45,7 +45,7 @@ const SlugComponent: React.FC<Props> = ({ products }: Props) => {
         <Image
           src={thumbnail}
           alt={`${title} image`}
-          className="productImage"
+          className="productImage rounded-sm"
           width={150}
           height={100}
           priority
