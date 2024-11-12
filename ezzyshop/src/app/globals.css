@@ -73,3 +73,8 @@ body {
     transform: translateX(-0px);
   }
 }
+
+.productImage {
+  aspect-ratio: 3/4;
+  object-fit: contain;
+}
