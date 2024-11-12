@@ -35,13 +35,17 @@ const SlugComponent: React.FC<Props> = ({ products }: Props) => {
       ? 0
       : discountPercentage;
 
+  // const productDetail = await amazon.asin({
+  //   asin: "B0DGHYPFYB",
+  // });
+
   return (
     <div className="flex w-full border border-gray-400 bg-[#ffdcdc]">
       <div className="flex h-64 w-72 items-center justify-center bg-[#ffffff] object-cover">
         <Image
           src={thumbnail}
           alt={`${title} image`}
-          className="h-auto w-auto"
+          className="productImage"
           width={150}
           height={100}
           priority
