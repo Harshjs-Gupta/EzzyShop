@@ -57,6 +57,10 @@ function Navbar() {
     router.push("/log-in-page");
   }
 
+  function handleCartPage() {
+    router.push("/home-page/cart-page");
+  }
+
   return (
     <>
       <nav className="nav-background hidden h-14 w-full items-center justify-between px-2 sm:flex">
@@ -94,7 +98,12 @@ function Navbar() {
             </Link>
           </div>
           <div className="flex items-center justify-center space-x-5">
-            <Image src={cart} alt="cart" className="h-8 w-8 cursor-pointer" />
+            <Image
+              src={cart}
+              alt="cart"
+              className="h-8 w-8 cursor-pointer"
+              onClick={handleCartPage}
+            />
             <div className="h-10 w-10 cursor-pointer" onClick={handleLogOut}>
               <Image
                 src={dummy_profile}
@@ -121,7 +130,12 @@ function Navbar() {
               alt="dummy_profile"
               className="h-8 w-8 cursor-pointer rounded-full object-cover"
             />
-            <Image src={cart} alt="cart" className="h-8 w-8 cursor-pointer" />
+            <Image
+              src={cart}
+              alt="cart"
+              className="h-8 w-8 cursor-pointer"
+              onClick={handleCartPage}
+            />
           </div>
         </div>
         <SearchBar onItemsSearch={handleItemsClick} />
