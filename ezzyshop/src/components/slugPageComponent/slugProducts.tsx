@@ -17,6 +17,7 @@ interface Product {
   };
   price: PriceDetails;
   length: number;
+  main_image: string;
 }
 
 interface ProductsResponse {

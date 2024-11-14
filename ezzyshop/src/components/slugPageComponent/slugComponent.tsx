@@ -1,9 +1,14 @@
+"use client";
 import Image from "next/image";
 import StartRating from "../StartRating/startRating";
 import info from "@/assets/icon/info.png";
+// import { useState } from "react";
+import { useLoading } from "@/app/loadingContext";
+import { useRouter } from "next/navigation";
+import { toast } from "react-toastify";
 
 interface Props {
-  products: Product; // Single Product, not an array
+  products: Product;
 }
 
 interface PriceDetails {
@@ -13,17 +18,21 @@ interface PriceDetails {
 }
 
 interface Product {
+  asin: string; // Assuming each product has a unique `id`
   title: string;
   thumbnail: string;
   reviews: {
     rating: number;
   };
   price: PriceDetails;
+  main_image: string;
 }
 
 const SlugComponent: React.FC<Props> = ({ products }: Props) => {
-  // Directly access `products` without indexing
-  const { title, thumbnail, reviews, price } = products;
+  // const [searchID, setSearchID] = useState("");
+  const { setLoading } = useLoading();
+  const router = useRouter();
+  const { asin, title, thumbnail, reviews, price } = products;
   const { before_price, current_price, savings_amount } = price;
 
   const discountPercentage = before_price
@@ -35,13 +44,42 @@ const SlugComponent: React.FC<Props> = ({ products }: Props) => {
       ? 0
       : discountPercentage;
 
-  // const productDetail = await amazon.asin({
-  //   asin: "B0DGHYPFYB",
-  // });
+  const fetchProductById = async (productId: string) => {
+    setLoading(true);
+    try {
+      const response = await fetch(
+        `/api/productDetail?searchID=${encodeURIComponent(productId)}`,
+      );
+      const data = await response.json();
+
+      if (response.ok) {
+        // setSearchID(productId);
+        // Save fetched product data in local storage and navigate to cart page
+        localStorage.setItem("productDetails", JSON.stringify(data));
+        router.push("/home-page/product-details-page");
+        return data;
+      } else {
+        toast.error(data.error);
+      }
+    } catch (err) {
+      if (err instanceof Error) {
+        toast.error(err.message);
+      }
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  function handleDetailsPage() {
+    fetchProductById(asin);
+  }
 
   return (
     <div className="flex w-full border border-gray-400 bg-[#ffdcdc]">
-      <div className="flex h-64 w-72 items-center justify-center bg-[#ffffff] object-cover">
+      <div
+        className="flex h-64 w-72 cursor-pointer items-center justify-center bg-[#ffffff] object-cover"
+        onClick={handleDetailsPage}
+      >
         <Image
           src={thumbnail}
           alt={`${title} image`}
@@ -57,7 +95,12 @@ const SlugComponent: React.FC<Props> = ({ products }: Props) => {
             <span className="text-sm">Sponsored</span>
             <Image src={info} alt="info" className="h-5 w-5" />
           </div>
-          <span className="font-semibold">{title}</span>
+          <span
+            className="cursor-pointer font-semibold hover:text-purple-600"
+            onClick={handleDetailsPage}
+          >
+            {title}
+          </span>
           <StartRating defaultRating={reviews.rating} size={20} maxRating={5} />
           <div className="flex items-center gap-1">
             <span className="text-3xl font-bold">{`Rs ${current_price}`}</span>
@@ -73,7 +116,10 @@ const SlugComponent: React.FC<Props> = ({ products }: Props) => {
           {savings_amount !== 0 && <span>{`Save Rs ${savings_amount}`}</span>}
         </div>
         <div className="flex flex-col gap-2">
-          <button className="h-8 w-24 rounded-full bg-yellow-400 text-sm font-semibold">
+          <button
+            // onClick={addToCart}
+            className="h-8 w-24 rounded-full bg-yellow-400 text-sm font-semibold"
+          >
             Add to cart
           </button>
         </div>
