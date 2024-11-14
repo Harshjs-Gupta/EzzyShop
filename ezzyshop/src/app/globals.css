@@ -77,4 +77,5 @@ body {
 .productImage {
   aspect-ratio: 3/4;
   object-fit: contain;
+  mix-blend-mode: multiply;
 }
