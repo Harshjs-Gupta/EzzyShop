@@ -57,9 +57,9 @@ function Navbar() {
     router.push("/log-in-page");
   }
 
-  function handleCartPage() {
-    router.push("/home-page/cart-page");
-  }
+  // function handleCartPage() {
+  //   router.push("/home-page/cart-page");
+  // }
 
   return (
     <>
@@ -102,7 +102,7 @@ function Navbar() {
               src={cart}
               alt="cart"
               className="h-8 w-8 cursor-pointer"
-              onClick={handleCartPage}
+              // onClick={handleCartPage}
             />
             <div className="h-10 w-10 cursor-pointer" onClick={handleLogOut}>
               <Image
@@ -134,7 +134,7 @@ function Navbar() {
               src={cart}
               alt="cart"
               className="h-8 w-8 cursor-pointer"
-              onClick={handleCartPage}
+              // onClick={handleCartPage}
             />
           </div>
         </div>
