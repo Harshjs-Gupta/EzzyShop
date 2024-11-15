@@ -24,6 +24,7 @@ interface Product {
     rating: number;
     feature_bullets: [];
   };
+  thumbnail: string;
   price: PriceDetails;
   badges: PrimeDetail;
   feature_bullets: [];
