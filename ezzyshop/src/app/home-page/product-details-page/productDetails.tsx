@@ -1,9 +1,15 @@
+"use client";
 import info from "@/assets/icon/info.png";
+import Image from "next/image";
 import ChoiceLogo from "@/components/primeLogo/choiceLogo";
 import PrimeLogo from "@/components/primeLogo/PrimeLogo";
-import Image from "next/image";
 import "react-medium-image-zoom/dist/styles.css";
 import { TransformWrapper, TransformComponent } from "react-zoom-pan-pinch";
+import { toast } from "react-toastify";
+import { doc, setDoc } from "firebase/firestore";
+import { database } from "@/lib/firebase";
+import { useLoading } from "@/app/loadingContext";
+import { useRouter } from "next/navigation";
 
 interface ProductsItemType {
   products: Product; // Single Product, not an array
@@ -23,12 +29,14 @@ interface PrimeDetail {
 }
 
 interface Product {
+  asin: string;
   title: string;
   main_image: string;
   reviews: {
     rating: number;
     feature_bullets: [];
   };
+  thumbnail: string;
   price: PriceDetails;
   badges: PrimeDetail;
   feature_bullets: [];
@@ -40,7 +48,10 @@ const ProductDetails: React.FC<ProductsItemType> = ({
   products,
 }: ProductsItemType) => {
   const {
+    asin,
     title,
+    thumbnail,
+    reviews,
     main_image,
     price,
     badges,
@@ -57,8 +68,30 @@ const ProductDetails: React.FC<ProductsItemType> = ({
   } = price;
 
   const { amazon_prime, amazon_choice } = badges;
+  const { setLoading } = useLoading();
+  const router = useRouter();
 
   console.log(products);
+
+  async function addToCart(productId: string) {
+    try {
+      setLoading(true);
+      await setDoc(doc(database, "cart", productId), {
+        asin: asin, // Assuming each product has a unique `id`
+        title: title,
+        thumbnail: thumbnail,
+        reviews: reviews,
+        price: price,
+      });
+      router.push("/home-page/cartPage");
+    } catch (err) {
+      if (err instanceof Error) {
+        toast.error(err.message);
+      }
+    } finally {
+      setLoading(false);
+    }
+  }
 
   // console.log(images.map((item) => console.log(item)));
 
@@ -133,7 +166,10 @@ const ProductDetails: React.FC<ProductsItemType> = ({
               {amazon_prime && <PrimeLogo />}
               {amazon_choice && <ChoiceLogo />}
               <div className="flex flex-col gap-2">
-                <button className="h-8 w-24 rounded-full bg-yellow-400 text-sm font-semibold">
+                <button
+                  className="h-8 w-24 rounded-full bg-yellow-400 text-sm font-semibold"
+                  onClick={() => addToCart(asin)}
+                >
                   Add to cart
                 </button>
               </div>
@@ -144,14 +180,14 @@ const ProductDetails: React.FC<ProductsItemType> = ({
           <span className="text-3xl font-semibold underline">
             Feature Bullets
           </span>
-          <div className="flex flex-col gap-3">
+          <ul className="flex flex-col gap-3">
             {feature_bullets.map((feature, index) => (
               <div className="flex gap-2" key={index}>
-                <span className="text-xl font-semibold text-red-600">{`${index + 1}.`}</span>
-                <span className="">{feature}</span>
+                <li className="text-xl font-semibold text-red-600">{`${index + 1}.`}</li>
+                <li className="">{feature}</li>
               </div>
             ))}
-          </div>
+          </ul>
         </div>
       </div>
     </div>
