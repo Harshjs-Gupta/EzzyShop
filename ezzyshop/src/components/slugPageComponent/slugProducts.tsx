@@ -1,25 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
 import SlugComponent from "./slugComponent";
-
-interface PriceDetails {
-  before_price: number;
-  current_price: number;
-  savings_amount: number;
-}
-
-interface Product {
-  asin: string;
-  title: string;
-  thumbnail: string;
-  reviews: {
-    rating: number;
-  };
-  price: PriceDetails;
-  length: number;
-  main_image: string;
-}
-
+import { Product } from "@/types/productTypes";
 interface ProductsResponse {
   result: Product[];
 }
