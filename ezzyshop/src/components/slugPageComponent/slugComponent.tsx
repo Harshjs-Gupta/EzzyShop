@@ -6,6 +6,8 @@ import info from "@/assets/icon/info.png";
 import { useLoading } from "@/app/loadingContext";
 import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
+import { doc, setDoc } from "firebase/firestore";
+import { database } from "@/lib/firebase";
 
 interface Props {
   products: Product;
@@ -15,17 +17,16 @@ interface PriceDetails {
   before_price: number;
   current_price: number;
   savings_amount: number;
+  savings_percent: number;
 }
-
 interface Product {
-  asin: string; // Assuming each product has a unique `id`
+  asin: string;
   title: string;
   thumbnail: string;
   reviews: {
     rating: number;
   };
   price: PriceDetails;
-  main_image: string;
 }
 
 const SlugComponent: React.FC<Props> = ({ products }: Props) => {
@@ -74,6 +75,26 @@ const SlugComponent: React.FC<Props> = ({ products }: Props) => {
     fetchProductById(asin);
   }
 
+  async function addToCart(productId: string) {
+    try {
+      setLoading(true);
+      await setDoc(doc(database, "cart", productId), {
+        asin: asin, // Assuming each product has a unique `id`
+        title: title,
+        thumbnail: thumbnail,
+        reviews: reviews,
+        price: price,
+      });
+      router.push("/home-page/cartPage");
+    } catch (err) {
+      if (err instanceof Error) {
+        toast.error(err.message);
+      }
+    } finally {
+      setLoading(false);
+    }
+  }
+
   return (
     <div className="flex w-full border border-gray-400 bg-[#ffdcdc]">
       <div
@@ -117,7 +138,7 @@ const SlugComponent: React.FC<Props> = ({ products }: Props) => {
         </div>
         <div className="flex flex-col gap-2">
           <button
-            // onClick={addToCart}
+            onClick={() => addToCart(asin)}
             className="h-8 w-24 rounded-full bg-yellow-400 text-sm font-semibold"
           >
             Add to cart
