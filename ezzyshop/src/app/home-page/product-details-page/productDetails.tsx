@@ -50,7 +50,6 @@ const ProductDetails: React.FC<ProductsItemType> = ({
   const {
     asin,
     title,
-    thumbnail,
     reviews,
     main_image,
     price,
@@ -79,7 +78,7 @@ const ProductDetails: React.FC<ProductsItemType> = ({
       await setDoc(doc(database, "cart", productId), {
         asin: asin, // Assuming each product has a unique `id`
         title: title,
-        thumbnail: thumbnail,
+        thumbnail: main_image,
         reviews: reviews,
         price: price,
       });
