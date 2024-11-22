@@ -98,48 +98,52 @@ const SlugComponent: React.FC<Props> = ({ products }: Props) => {
   return (
     <div className="flex w-full border border-gray-400 bg-[#ffdcdc]">
       <div
-        className="flex h-64 w-72 cursor-pointer items-center justify-center bg-[#ffffff] object-cover"
+        className="flex h-full w-auto cursor-pointer items-center justify-center bg-[#ffffff] object-cover p-2 sm:h-64 sm:w-72"
         onClick={handleDetailsPage}
       >
         <Image
           src={thumbnail}
           alt={`${title} image`}
-          className="productImage rounded-sm"
+          className="rounded-sm"
           width={150}
           height={100}
           priority
         />
       </div>
-      <div className="flex flex-col gap-3 p-3">
+      <div className="flex flex-col gap-3 p-2 sm:p-3">
         <div className="flex flex-col gap-2">
-          <div className="flex gap-2">
+          <div className="flex items-center gap-2">
             <span className="text-sm">Sponsored</span>
-            <Image src={info} alt="info" className="h-5 w-5" />
+            <Image src={info} alt="info" className="h-4 w-4 sm:h-5 sm:w-5" />
           </div>
           <span
-            className="cursor-pointer font-semibold hover:text-purple-600"
+            className="cursor-pointer text-[12px] font-semibold hover:text-purple-600 sm:text-[18px]"
             onClick={handleDetailsPage}
           >
             {title}
           </span>
           <StartRating defaultRating={reviews.rating} size={20} maxRating={5} />
-          <div className="flex items-center gap-1">
-            <span className="text-3xl font-bold">{`Rs ${current_price}`}</span>
-            {before_price !== 0 && (
-              <div className="flex items-center justify-center gap-1">
-                <span className="line-through">{`M.R.P: Rs ${before_price}`}</span>
-              </div>
-            )}
-            <span className="font-semibold">
-              {discount !== 0 && `(${Math.trunc(discount)}% off)`}
-            </span>
+          <div className="flex flex-col items-start gap-1 sm:flex-row sm:gap-2">
+            <span className="text-[12px] font-bold sm:text-3xl">{`Rs ${current_price}`}</span>
+            <div className="flex gap-2">
+              {before_price !== 0 && (
+                <div className="flex items-center justify-center gap-1">
+                  <span className="text-[12px] line-through sm:text-2xl">{`M.R.P: Rs ${before_price}`}</span>
+                </div>
+              )}
+              <span className="text-[12px] font-semibold sm:text-2xl">
+                {discount !== 0 && `(${Math.trunc(discount)}% off)`}
+              </span>
+            </div>
           </div>
-          {savings_amount !== 0 && <span>{`Save Rs ${savings_amount}`}</span>}
+          {savings_amount !== 0 && (
+            <span className="text-[12px] sm:text-2xl">{`Save Rs ${savings_amount}`}</span>
+          )}
         </div>
         <div className="flex flex-col gap-2">
           <button
             onClick={() => addToCart(asin)}
-            className="h-8 w-24 rounded-full bg-yellow-400 text-sm font-semibold"
+            className="h-8 w-20 rounded-full bg-yellow-400 text-[12px] font-semibold sm:h-8 sm:w-24 sm:text-sm"
           >
             Add to cart
           </button>

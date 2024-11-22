@@ -4,11 +4,9 @@ import style from "./slugPage.module.css";
 function SlugPage() {
   return (
     <div
-      className={`${style.background} h-screen w-screen overflow-scroll p-2 pb-10`}
+      className={`${style.background} sm: relative top-48 z-0 flex h-screen w-screen flex-col overflow-scroll pb-72 sm:relative sm:top-0 sm:p-2 sm:pb-10`}
     >
-      <div>
-        <SlugProduct />
-      </div>
+      <SlugProduct />
     </div>
   );
 }

@@ -51,7 +51,7 @@ function ElectronicItemsCard() {
   };
 
   return (
-    <div className="electronicCard flex h-[28rem] w-80 flex-col space-y-4 bg-[#fefef8d6] p-3">
+    <div className="electronicCard flex h-[28rem] w-72 flex-col space-y-4 bg-[#fefef8d6] p-3">
       <span className="text-xl font-semibold">Gadgets</span>
       <div className="grid h-3/4 w-full grid-cols-2 grid-rows-2 gap-2">
         <div className="flex cursor-pointer flex-col justify-center space-y-2">

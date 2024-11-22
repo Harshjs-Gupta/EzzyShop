@@ -55,7 +55,7 @@ function Chards({ productHeading, image, productName, keyword }: InfoProps) {
 
   return (
     <div
-      className="flex h-[28rem] w-80 flex-col space-y-4 bg-[#fefef8d6] p-3"
+      className="flex h-[28rem] w-72 flex-col space-y-4 bg-[#fefef8d6] p-3"
       onClick={() => handleItemsClick(`${keyword}`)}
     >
       <span className="text-xl font-semibold">{productHeading}</span>

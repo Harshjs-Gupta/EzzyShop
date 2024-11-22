@@ -9,7 +9,7 @@ function PrimeLogo() {
         alt="amazonPrimeLogo"
         width={200}
         height={50}
-        className="h-12 w-20"
+        className="h-10 w-14 sm:h-12 sm:w-20"
       />
     </span>
   );

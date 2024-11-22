@@ -115,21 +115,20 @@ function Navbar() {
         </div>
       </nav>
       {/* ! Mobile view 👇 */}
-      <nav className="nav-background fixed flex h-48 w-screen flex-col gap-5 px-2 sm:hidden">
+      <nav className="nav-background fixed z-20 flex h-48 w-screen flex-col gap-5 px-2 sm:hidden">
         <div className="flex items-center justify-between pt-1">
           <div className="flex items-center justify-center gap-5">
             <Image src={menuIcon} alt="menuIcon" className="h-12 w-10" />
             <Image src={appName} alt="appName" className="h-13 w-28" />
           </div>
-          <div
-            className="flex items-center justify-center gap-5"
-            onClick={handleLogOut}
-          >
-            <Image
-              src={dummy_profile}
-              alt="dummy_profile"
-              className="h-8 w-8 cursor-pointer rounded-full object-cover"
-            />
+          <div className="flex items-center justify-center gap-5">
+            <div onClick={handleLogOut}>
+              <Image
+                src={dummy_profile}
+                alt="dummy_profile"
+                className="h-8 w-8 cursor-pointer rounded-full object-cover"
+              />
+            </div>
             <Image
               src={cart}
               alt="cart"

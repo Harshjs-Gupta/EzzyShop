@@ -50,7 +50,7 @@ function GamingItemsCard() {
 
   return (
     <div
-      className="flex h-[28rem] w-80 flex-col space-y-4 bg-[#fefef8d6] p-3"
+      className="flex h-[28rem] w-72 flex-col space-y-4 bg-[#fefef8d6] p-3"
       onClick={() => handleItemsClick("ps5")}
     >
       <span className="text-xl font-semibold">Gaming Accessories</span>

@@ -52,11 +52,11 @@ function DetailPage() {
   const items = productDetails?.result || [];
 
   return (
-    <div className="h-screen w-screen overflow-scroll bg-[#FEE5E9] p-2">
+    <div className="h-screen w-screen overflow-hidden overflow-y-scroll bg-[#FEE5E9] p-2">
       <div className="p-3">
         <span className="text-xl font-semibold">Product Detail</span>
       </div>
-      <div className="flex h-screen w-screen flex-col items-center bg-[#FEE5E9]">
+      <div className="relative top-48 flex h-screen w-screen flex-col items-center bg-[#FEE5E9] sm:relative sm:top-0">
         {items.map((item: Product) => (
           <ProductDetails products={item} key={item.asin} />
         ))}
