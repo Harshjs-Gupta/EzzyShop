@@ -11,12 +11,12 @@ import WatchCard from "@/components/home-page-component/WatchCard";
 
 function HomePage() {
   return (
-    <main className="main-page absolute top-48 flex h-screen w-screen flex-col items-center gap-5 overflow-scroll p-5 pb-60 sm:relative sm:top-0 sm:pb-20">
+    <main className="main-page absolute top-48 flex h-screen w-screen flex-col items-center gap-5 overflow-scroll overflow-x-hidden p-5 pb-60 sm:relative sm:top-0 sm:pb-20">
       <div className="flex flex-col items-center justify-center pt-3 text-4xl font-bold capitalize text-white md:text-5xl">
         <span>Discover & shop</span>
         <span>the trend</span>
       </div>
-      <main className="main-container flex flex-col gap-5 sm:grid sm:grid-flow-row sm:grid-cols-4">
+      <main className="main-container grid grid-flow-row grid-cols-1 gap-5 sm:flex sm:flex-col md:grid md:grid-cols-2 lg:grid-cols-4">
         <ElectronicItemsCard />
         <GamingItemsCard />
         <WatchCard />
