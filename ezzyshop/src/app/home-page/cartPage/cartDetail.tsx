@@ -42,15 +42,15 @@ const CartDetail: React.FC<{ products: Product }> = ({ products }) => {
 
   return (
     <div className="flex h-auto w-full items-center gap-2 p-2">
-      <div className="flex h-full w-60 items-center justify-center rounded-xl object-cover p-2">
+      <div className="flex h-full w-60 items-center justify-center rounded-xl bg-white object-cover p-2">
         <TransformWrapper>
           <TransformComponent>
             <Image
               src={thumbnail}
               alt={`${title} image`}
-              className="h-auto w-auto rounded-sm"
-              width={250}
-              height={200}
+              className="productImage rounded-sm"
+              width={150}
+              height={100}
               priority
             />
           </TransformComponent>
@@ -66,7 +66,7 @@ const CartDetail: React.FC<{ products: Product }> = ({ products }) => {
 
           <div className="flex items-center gap-3">
             <span className="text-3xl font-bold">
-              {quantity === 1 ? ` Rs ${current_price}` : `${quantityPrice}`}
+              {quantity === 1 ? ` Rs ${current_price}` : `Rs ${quantityPrice}`}
             </span>
             {before_price !== 0 && (
               <div className="flex items-center justify-center gap-1">

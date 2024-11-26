@@ -96,16 +96,16 @@ const SlugComponent: React.FC<Props> = ({ products }: Props) => {
   }
 
   return (
-    <div className="flex w-full border border-gray-400 bg-[#ffdcdc]">
+    <div className="flex h-[257px] w-full overflow-hidden border border-gray-400 bg-[#ffdcdc]">
       <div
-        className="flex h-full w-auto cursor-pointer items-center justify-center bg-[#ffffff] object-cover p-2 sm:h-64 sm:w-72"
+        className="flex h-[100%] w-[265px] cursor-pointer items-center justify-center bg-[#ffffff] object-cover p-2 sm:h-64 sm:w-72"
         onClick={handleDetailsPage}
       >
         <Image
           src={thumbnail}
           alt={`${title} image`}
-          className="rounded-sm"
-          width={150}
+          className="productImage rounded-sm"
+          width={180}
           height={100}
           priority
         />
@@ -128,10 +128,10 @@ const SlugComponent: React.FC<Props> = ({ products }: Props) => {
             <div className="flex gap-2">
               {before_price !== 0 && (
                 <div className="flex items-center justify-center gap-1">
-                  <span className="text-[12px] line-through sm:text-2xl">{`M.R.P: Rs ${before_price}`}</span>
+                  <span className="text-[12px] line-through sm:text-xl">{`M.R.P: Rs ${before_price}`}</span>
                 </div>
               )}
-              <span className="text-[12px] font-semibold sm:text-2xl">
+              <span className="text-[12px] font-semibold sm:text-xl">
                 {discount !== 0 && `(${Math.trunc(discount)}% off)`}
               </span>
             </div>
