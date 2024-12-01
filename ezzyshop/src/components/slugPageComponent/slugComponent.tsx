@@ -1,4 +1,3 @@
-"use client";
 import Image from "next/image";
 import StartRating from "../StartRating/startRating";
 import info from "@/assets/icon/info.png";
@@ -8,6 +7,7 @@ import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
 import { doc, setDoc } from "firebase/firestore";
 import { database } from "@/lib/firebase";
+import { getAuth } from "firebase/auth";
 
 interface Props {
   products: Product;
@@ -76,14 +76,23 @@ const SlugComponent: React.FC<Props> = ({ products }: Props) => {
   }
 
   async function addToCart(productId: string) {
+    const auth = getAuth();
+    const user = auth.currentUser;
+
+    if (!user) {
+      toast.error("You must be logged in to add items to the cart.");
+      return;
+    }
+
     try {
       setLoading(true);
       await setDoc(doc(database, "cart", productId), {
-        asin: asin, // Assuming each product has a unique `id`
+        asin: asin,
         title: title,
         thumbnail: thumbnail,
         reviews: reviews,
         price: price,
+        userId: user.uid, // Store user ID for reference
       });
       router.push("/home-page/cartPage");
     } catch (err) {
