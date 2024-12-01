@@ -48,7 +48,6 @@ function HomePage() {
         start: "top 55%",
         end: "top 30%",
         scrub: 5,
-        markers: true,
       },
     });
 
