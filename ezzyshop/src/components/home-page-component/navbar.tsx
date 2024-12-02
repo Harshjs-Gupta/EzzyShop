@@ -58,7 +58,15 @@ function Navbar() {
   }
 
   function handleCartPage() {
+    setLoading(true);
     router.push("/home-page/cartPage");
+    setLoading(false);
+  }
+
+  function handleOrderPage() {
+    setLoading(true);
+    router.push("/home-page/order-page");
+    setLoading(false);
   }
 
   return (
@@ -90,12 +98,12 @@ function Navbar() {
             >
               Home & Kitchen
             </span>
-            <Link
-              href="#"
-              className="text-lg font-semibold hover:text-[#ff63f2] hover:text-shadow-glow"
+            <span
+              className="cursor-pointer text-lg font-semibold hover:text-[#ff63f2] hover:text-shadow-glow"
+              onClick={handleOrderPage}
             >
               Order
-            </Link>
+            </span>
           </div>
           <div className="flex items-center justify-center space-x-5">
             <Image
