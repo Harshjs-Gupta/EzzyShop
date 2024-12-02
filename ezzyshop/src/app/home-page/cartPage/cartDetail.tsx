@@ -4,10 +4,38 @@ import info from "@/assets/icon/info.png";
 import { TransformComponent, TransformWrapper } from "react-zoom-pan-pinch";
 import { useState } from "react";
 import deleteIcon from "@/assets/icon/deleteIcon.png";
-import { database } from "@/lib/firebase";
+import { auth, database } from "@/lib/firebase";
 import { toast } from "react-toastify";
-import { deleteDoc, doc } from "firebase/firestore";
+import { deleteDoc, doc, setDoc } from "firebase/firestore";
 import { Product } from "@/types/productTypes";
+import Script from "next/script";
+
+declare global {
+  interface Window {
+    Razorpay: {
+      new (options: {
+        key: string;
+        amount: number;
+        currency: string;
+        order_id: string;
+        name?: string;
+        prefill?: {
+          name?: string;
+          email?: string;
+        };
+        handler: (response: RazorpayResponse) => void; // Updated this line
+      }): {
+        open: () => void;
+      };
+    };
+  }
+}
+
+type RazorpayResponse = {
+  razorpay_payment_id: string;
+  razorpay_order_id: string;
+  razorpay_signature?: string;
+};
 
 const CartDetail: React.FC<{ products: Product }> = ({ products }) => {
   const [quantity, setQuantity] = useState<number>(1);
@@ -38,7 +66,102 @@ const CartDetail: React.FC<{ products: Product }> = ({ products }) => {
         console.error("Error deleting product:", error);
       });
   }
-  console.log(quantity);
+  // console.log(quantityPrice);
+
+  async function createOrder() {
+    const user = auth.currentUser;
+    const email = user?.email;
+    const name = user?.displayName;
+
+    // Include all product details
+    const productDetails = {
+      title: title,
+      price: current_price,
+      quantity: quantity,
+      thumbnail: thumbnail,
+      before_price: before_price,
+      savings_amount: savings_amount,
+      savings_percent: savings_percent,
+      quantityPrice: quantityPrice,
+      quantityBeforePrice: quantityBeforePrice,
+      quantitySavingPrice: quantitySavingPrice,
+    };
+
+    // Send the product details along with the amount to your API
+    const response = await fetch("/api/createOrder", {
+      method: "POST",
+      body: JSON.stringify({
+        amount: quantityPrice,
+        products: productDetails, // Add product details to the request
+      }),
+    });
+
+    const data = await response.json();
+    console.log(data);
+
+    const paymentData = {
+      key: process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID || "", // Ensure key is a string
+      amount: Number(data.amount), // Ensure amount is a number
+      currency: "INR",
+      order_id: data.id || "", // Ensure order_id is a string
+      name: name || undefined, // Make optional
+      prefill: {
+        name: name || undefined, // Make optional
+        email: email || undefined, // Make optional
+      },
+      notes: {
+        title: productDetails.title,
+        price: productDetails.price,
+        quantity: productDetails.quantity,
+        before_price: productDetails.before_price,
+        savings_amount: productDetails.savings_amount,
+        savings_percent: productDetails.savings_percent,
+        thumbnail: productDetails.thumbnail,
+        quantityPrice: productDetails.quantityPrice,
+        quantityBeforePrice: productDetails.quantityBeforePrice,
+        quantitySavingPrice: productDetails.quantitySavingPrice,
+      },
+      handler: async function (response: RazorpayResponse) {
+        console.log(response);
+
+        if (response.razorpay_payment_id) {
+          try {
+            // Create an order object
+            const orderData = {
+              user: {
+                name: name,
+                email: email,
+              },
+              products: productDetails,
+              payment: {
+                payment_id: response.razorpay_payment_id,
+                order_id: response.razorpay_order_id,
+                amount: Number(data.amount),
+                currency: "INR",
+              },
+              status: "Completed", // Add status
+              createdAt: new Date(),
+            };
+
+            // Save the order data in Firestore
+            const orderRef = doc(
+              database,
+              "orders",
+              response.razorpay_order_id,
+            );
+            await setDoc(orderRef, orderData);
+
+            console.log("Order created in Firestore:", orderData);
+          } catch (error) {
+            console.error("Error creating order in Firestore:", error);
+          }
+        }
+      },
+    };
+
+    const payment = new window.Razorpay(paymentData);
+    payment.open();
+  }
 
   return (
     <div className="flex h-auto w-full items-center gap-2 p-2">
@@ -89,7 +212,14 @@ const CartDetail: React.FC<{ products: Product }> = ({ products }) => {
             </span>
           )}
           <div className="z-2 flex items-center gap-72">
-            <button className="h-8 w-24 rounded-full bg-yellow-400 text-sm font-semibold">
+            <Script
+              type="text/javascript"
+              src="https://checkout.razorpay.com/v1/checkout.js"
+            />
+            <button
+              className="h-8 w-24 rounded-full bg-yellow-400 text-sm font-semibold active:bg-yellow-500"
+              onClick={createOrder}
+            >
               Buy Now
             </button>
             <div className="flex">
@@ -107,7 +237,7 @@ const CartDetail: React.FC<{ products: Product }> = ({ products }) => {
                 +
               </button>
             </div>
-            <div
+            <button
               className="flex h-8 w-24 cursor-pointer items-center justify-center rounded-full bg-red-400"
               onClick={() => deleteProduct(products.asin)}
             >
@@ -116,7 +246,7 @@ const CartDetail: React.FC<{ products: Product }> = ({ products }) => {
                 alt="deleteIcon"
                 className="h-5 w-5 cursor-pointer"
               />
-            </div>
+            </button>
           </div>
         </div>
       </div>
