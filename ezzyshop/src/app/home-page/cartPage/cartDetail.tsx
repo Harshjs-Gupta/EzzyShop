@@ -92,7 +92,7 @@ const CartDetail: React.FC<{ products: Product }> = ({ products }) => {
       method: "POST",
       body: JSON.stringify({
         amount: quantityPrice,
-        // products: productDetails, // Add product details to the request
+        products: productDetails, // Add product details to the request
       }),
     });
 
@@ -100,7 +100,7 @@ const CartDetail: React.FC<{ products: Product }> = ({ products }) => {
     console.log(data);
 
     const paymentData = {
-      key: "rzp_test_yfTOicMGQedbRI", // Ensure key is a string
+      key: process.env.RAZORPAY_KEY_ID || "", // Ensure key is a string
       amount: Number(data.amount), // Ensure amount is a number
       currency: "INR",
       order_id: data.id || "", // Ensure order_id is a string

@@ -6,8 +6,8 @@ if (!process.env.RAZORPAY_KEY_ID || !process.env.RAZORPAY_KEY_SECRET) {
 }
 
 const razorpay = new Razorpay({
-  key_id: "rzp_test_yfTOicMGQedbRI",
-  key_secret: "ttA0rEh9NWXYKN9psQ6wg78cS",
+  key_id: process.env.RAZORPAY_KEY_ID as string,
+  key_secret: process.env.RAZORPAY_KEY_SECRET as string,
 });
 
 export async function POST(req: NextRequest) {
