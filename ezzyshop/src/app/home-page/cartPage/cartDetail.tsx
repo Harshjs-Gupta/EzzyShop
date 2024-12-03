@@ -164,7 +164,7 @@ const CartDetail: React.FC<{ products: Product }> = ({ products }) => {
   }
 
   return (
-    <div className="flex h-auto w-full items-center gap-2 p-2">
+    <div className="mb-5 flex h-auto w-full flex-col items-center gap-2 p-2 sm:flex-row">
       <div className="flex h-full w-60 items-center justify-center rounded-xl bg-white object-cover p-2">
         <TransformWrapper>
           <TransformComponent>
@@ -179,30 +179,32 @@ const CartDetail: React.FC<{ products: Product }> = ({ products }) => {
           </TransformComponent>
         </TransformWrapper>
       </div>
-      <div className="flex flex-col gap-3 p-3">
+      <div className="flex w-96 flex-col gap-3 p-3 sm:w-full">
         <div className="flex flex-col gap-3 text-left">
           <div className="flex gap-2">
             <span className="text-sm">Sponsored</span>
             <Image src={info} alt="info" className="h-5 w-5" />
           </div>
-          <span className="font-semibold">{title}</span>
-
-          <div className="flex items-center gap-3">
-            <span className="text-3xl font-bold">
+          <span className="text-[12px] font-semibold sm:text-xl">{title}</span>
+          <div className="flex flex-col items-start gap-1 sm:flex-row sm:items-center sm:gap-2">
+            <span className="text-[12px] font-bold sm:text-3xl">
               {quantity === 1 ? ` Rs ${current_price}` : `Rs ${quantityPrice}`}
             </span>
-            {before_price !== 0 && (
-              <div className="flex items-center justify-center gap-1">
-                <span className="line-through">
-                  {quantity === 1
-                    ? `M.R.P: Rs ${Math.trunc(before_price)}`
-                    : `M.R.P Rs ${Math.trunc(quantityBeforePrice)}`}
-                </span>
-              </div>
-            )}
-            <span className="font-semibold">
-              {savings_percent !== 0 && `(${Math.trunc(savings_percent)}% off)`}
-            </span>
+            <div className="flex gap-2">
+              {before_price !== 0 && (
+                <div className="flex items-center justify-center gap-1">
+                  <span className="text-[12px] line-through sm:text-xl">
+                    {quantity === 1
+                      ? `M.R.P: Rs ${Math.trunc(before_price)}`
+                      : `M.R.P Rs ${Math.trunc(quantityBeforePrice)}`}
+                  </span>
+                </div>
+              )}
+              <span className="text-[12px] font-semibold sm:text-xl">
+                {savings_percent !== 0 &&
+                  `(${Math.trunc(savings_percent)}% off)`}
+              </span>
+            </div>
           </div>
           {savings_amount !== 0 && (
             <span>
@@ -211,7 +213,7 @@ const CartDetail: React.FC<{ products: Product }> = ({ products }) => {
                 : `Save Rs ${quantitySavingPrice}`}
             </span>
           )}
-          <div className="z-2 flex items-center gap-72">
+          <div className="z-2 flex items-center gap-5 sm:gap-72">
             <Script
               type="text/javascript"
               src="https://checkout.razorpay.com/v1/checkout.js"

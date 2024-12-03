@@ -57,7 +57,7 @@ function CartPage() {
   }, [setLoading]);
 
   return (
-    <div className="relative top-48 flex h-screen w-screen flex-col gap-5 overflow-scroll bg-[#FEE5E9] pb-40 sm:relative sm:top-0 sm:pb-20">
+    <div className="relative top-48 flex h-screen w-screen flex-col gap-5 overflow-scroll bg-[#FEE5E9] pb-96 sm:relative sm:top-0 sm:pb-20">
       <div className="p-3">
         <span className="text-xl font-semibold">Cart Details</span>
       </div>

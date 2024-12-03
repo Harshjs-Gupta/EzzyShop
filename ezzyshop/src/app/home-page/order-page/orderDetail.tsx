@@ -37,7 +37,6 @@ const OrderDetail: React.FC<OrderProduct> = ({ order }) => {
     before_price,
     price,
     quantity,
-    quantityBeforePrice,
     quantitySavingPrice,
     savings_amount,
     savings_percent,
@@ -59,25 +58,22 @@ const OrderDetail: React.FC<OrderProduct> = ({ order }) => {
           </TransformComponent>
         </TransformWrapper>
       </div>
-      <div className="flex flex-col gap-3 p-3">
+      <div className="flex w-96 flex-col gap-3 p-3 sm:w-full">
         <div className="flex flex-col gap-3 text-left">
-          <span className="font-semibold">{title}</span>
-          <div className="flex items-center gap-3">
-            <span className="text-3xl font-bold">
-              {quantity === 1 && ` Rs ${price}`}
-            </span>
-            {before_price !== 0 && (
-              <div className="flex items-center justify-center gap-1">
-                <span className="line-through">
-                  {quantity === 1
-                    ? `M.R.P: Rs ${Math.trunc(before_price)}`
-                    : `M.R.P Rs ${Math.trunc(quantityBeforePrice)}`}
-                </span>
-              </div>
-            )}
-            <span className="font-semibold">
-              {savings_percent !== 0 && `(${Math.trunc(savings_percent)}% off)`}
-            </span>
+          <span className="text-[12px] font-semibold sm:text-xl">{title}</span>
+          <div className="flex flex-col items-start gap-1 sm:flex-row sm:items-center sm:gap-2">
+            <span className="text-[12px] font-bold sm:text-3xl">{`Rs ${price}`}</span>
+            <div className="flex gap-2">
+              {before_price !== 0 && (
+                <div className="flex items-center justify-center gap-1">
+                  <span className="text-[12px] line-through sm:text-xl">{`M.R.P: Rs ${before_price}`}</span>
+                </div>
+              )}
+              <span className="text-[12px] font-semibold sm:text-xl">
+                {savings_percent !== 0 &&
+                  `(${Math.trunc(savings_percent)}% off)`}
+              </span>
+            </div>
           </div>
           {savings_amount !== 0 && (
             <span>

@@ -149,26 +149,29 @@ function Navbar() {
         <div className="flex w-screen items-center justify-center space-x-5">
           <div className="flex items-center justify-center space-x-5">
             <Link
-              href="#"
+              href="/home-page"
               className="text-md font-semibold hover:text-[#ff63f2] hover:text-shadow-glow"
             >
               Home
             </Link>
-            <span
+            <Link
+              href={"/home-page/${searchTerm}"}
               className="cursor-pointer text-lg font-semibold hover:text-[#ff63f2] hover:text-shadow-glow"
               onClick={() => handleItemsClick("smartPhones")}
             >
               Mobiles
-            </span>
-            <span
+            </Link>
+            <Link
+              href={"/home-page/${searchTerm}"}
               className="cursor-pointer text-lg font-semibold hover:text-[#ff63f2] hover:text-shadow-glow"
               onClick={() => handleItemsClick("home and kitchen products")}
             >
               Home & Kitchen
-            </span>
+            </Link>
             <Link
-              href="#"
+              href="/home-page/order-page"
               className="text-md font-semibold hover:text-[#ff63f2] hover:text-shadow-glow"
+              onClick={handleOrderPage}
             >
               Order
             </Link>

@@ -105,9 +105,9 @@ const SlugComponent: React.FC<Props> = ({ products }: Props) => {
   }
 
   return (
-    <div className="flex h-[257px] w-full overflow-hidden border border-gray-400 bg-[#ffdcdc]">
+    <div className="flex h-auto w-full overflow-hidden border border-gray-400 bg-[#ffdcdc]">
       <div
-        className="flex h-[100%] w-[265px] cursor-pointer items-center justify-center bg-[#ffffff] object-cover p-2 sm:h-64 sm:w-72"
+        className="flex h-auto w-[265px] cursor-pointer items-center justify-center bg-[#ffffff] object-cover p-2 sm:h-64 sm:w-72"
         onClick={handleDetailsPage}
       >
         <Image
@@ -119,7 +119,7 @@ const SlugComponent: React.FC<Props> = ({ products }: Props) => {
           priority
         />
       </div>
-      <div className="flex flex-col gap-3 p-2 sm:p-3">
+      <div className="flex w-96 flex-col gap-3 p-2 sm:w-full sm:p-3">
         <div className="flex flex-col gap-2">
           <div className="flex items-center gap-2">
             <span className="text-sm">Sponsored</span>
