@@ -2,7 +2,7 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   images: {
-    domains: ["www.amazon.in", "m.media-amazon.com"], // Add the hostname here
+    domains: ["www.amazon.in", "m.media-amazon.com"],
   },
   env: {
     RAZORPAY_KEY_ID: process.env.RAZORPAY_KEY_ID,
