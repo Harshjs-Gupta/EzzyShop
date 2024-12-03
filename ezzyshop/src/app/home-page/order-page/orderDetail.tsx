@@ -44,7 +44,7 @@ const OrderDetail: React.FC<OrderProduct> = ({ order }) => {
   } = products;
 
   return (
-    <div className="flex h-auto w-full items-center gap-2 p-2">
+    <div className="mb-5 flex h-auto w-full items-center gap-2 p-2">
       <div className="flex h-full w-60 items-center justify-center rounded-xl bg-white object-cover p-2">
         <TransformWrapper>
           <TransformComponent>
