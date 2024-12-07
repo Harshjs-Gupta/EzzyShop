@@ -5,6 +5,7 @@
     "skipLibCheck": true,
     "strict": true,
     "noEmit": true,
+    "typeRoots": ["node_modules/@types", "src/types"],
 
     "moduleResolution": "node",
     "resolveJsonModule": true,
