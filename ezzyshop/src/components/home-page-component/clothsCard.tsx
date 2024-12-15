@@ -1,53 +1,22 @@
 "use client";
+
 import Image from "next/image";
+import { useState } from "react";
 import cloths from "../../../public/image/cloths/Cloths.png";
 import FootWear from "../../../public/image/cloths/FootWares.png";
 import Jeans from "../../../public/image/cloths/Jeans.png";
 import WomenWear from "../../../public/image/cloths/Women'sWear.png";
-import { useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
-import { toast } from "react-toastify";
-import { useLoading } from "@/app/loadingContext";
+import useFetch from "@/app/hooks/useFetch";
 
 function ClothsCard() {
-  const [searchTerm, setSearchTerm] = useState("");
-  const { setLoading } = useLoading();
-  const router = useRouter();
+  const [searchTerm, setSearchTerm] = useState<string | null>(null);
 
-  useEffect(
-    function () {
-      const handleSearch = async () => {
-        if (searchTerm) {
-          setLoading(true);
-          try {
-            const response = await fetch(
-              `/api/amazon?searchTerm=${encodeURIComponent(searchTerm)}`,
-            );
-            const data = await response.json();
+  // Call useFetch at the top level with searchTerm
+  useFetch(searchTerm);
 
-            if (response.ok) {
-              localStorage.setItem("products", JSON.stringify(data));
-              router.push(`/home-page/${searchTerm}`);
-            } else {
-              toast.error(data.error);
-            }
-          } catch (err) {
-            if (err instanceof Error) {
-              toast.error(err.message);
-            }
-          } finally {
-            setLoading(false);
-          }
-        }
-      };
-
-      handleSearch();
-    },
-    [searchTerm, router, setLoading],
-  );
-
-  const handleItemsClick = (keyword: string) => {
-    setSearchTerm(keyword);
+  // Event handler to update the search term
+  const handleItemsClick = (term: string) => {
+    setSearchTerm(term);
   };
 
   return (
@@ -68,19 +37,19 @@ function ClothsCard() {
           onClick={() => handleItemsClick("footwear")}
         >
           <Image src={FootWear} alt="pic" className="h-32 w-32" />
-          <span>FootWare</span>
+          <span>Footwear</span>
         </div>
 
         <div
           className="flex cursor-pointer flex-col space-y-2"
-          onClick={() => handleItemsClick("Jeans")}
+          onClick={() => handleItemsClick("jeans")}
         >
           <Image src={Jeans} alt="pic" className="h-32 w-32" />
           <span>Jeans</span>
         </div>
         <div
           className="flex cursor-pointer flex-col space-y-2"
-          onClick={() => handleItemsClick("Women'sWear")}
+          onClick={() => handleItemsClick("women's wear")}
         >
           <Image src={WomenWear} alt="pic" className="h-32 w-32" />
           <span>Women&apos;s Wear</span>
@@ -89,7 +58,7 @@ function ClothsCard() {
       <p>
         <span
           className="cursor-pointer text-blue-700 underline"
-          onClick={() => handleItemsClick("ClothsAndFootwear")}
+          onClick={() => handleItemsClick("cloths-and-footwear")}
         >
           Show More
         </span>
@@ -97,4 +66,5 @@ function ClothsCard() {
     </div>
   );
 }
+
 export default ClothsCard;

@@ -4,50 +4,18 @@ import iPhone from "../../../public/image/electronicAppliances/iphone.png";
 import tv from "../../../public/image/electronicAppliances/tv.png";
 import appleAirPods from "../../../public/image/electronicAppliances/appleAirpods.png";
 import mouse from "../../../public/image/electronicAppliances/Mouse.png";
-import { useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
-import { toast } from "react-toastify";
-import { useLoading } from "@/app/loadingContext";
+import { useState } from "react";
+import useFetch from "@/app/hooks/useFetch";
 
 function ElectronicItemsCard() {
-  const [searchTerm, setSearchTerm] = useState("");
-  const { setLoading } = useLoading();
-  const router = useRouter();
+  const [searchTerm, setSearchTerm] = useState<string | null>(null);
 
-  useEffect(
-    function () {
-      const handleSearch = async () => {
-        if (searchTerm) {
-          setLoading(true);
-          try {
-            const response = await fetch(
-              `/api/amazon?searchTerm=${encodeURIComponent(searchTerm)}`,
-            );
-            const data = await response.json();
+  // Call useFetch at the top level with searchTerm
+  useFetch(searchTerm);
 
-            if (response.ok) {
-              localStorage.setItem("products", JSON.stringify(data));
-              router.push(`/home-page/${searchTerm}`);
-            } else {
-              toast.error(data.error);
-            }
-          } catch (err) {
-            if (err instanceof Error) {
-              toast.error(err.message);
-            }
-          } finally {
-            setLoading(false);
-          }
-        }
-      };
-
-      handleSearch();
-    },
-    [searchTerm, router, setLoading],
-  );
-
-  const handleItemsClick = (keyword: string) => {
-    setSearchTerm(keyword);
+  // Event handler to update the search term
+  const handleItemsClick = (term: string) => {
+    setSearchTerm(term);
   };
 
   return (

@@ -1,52 +1,19 @@
 "use client";
 import Image from "next/image";
 import ps5 from "../../../public/image/gamingAccessories/ps5.png";
-import { useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
-import { toast } from "react-toastify";
-import { useLoading } from "@/app/loadingContext";
+import { useState } from "react";
+import useFetch from "@/app/hooks/useFetch";
 
 function GamingItemsCard() {
-  const [searchTerm, setSearchTerm] = useState("");
-  const { setLoading } = useLoading();
-  const router = useRouter();
+  const [searchTerm, setSearchTerm] = useState<string | null>(null);
 
-  useEffect(() => {
-    const handleSearch = async () => {
-      if (searchTerm) {
-        setLoading(true);
-        try {
-          const response = await fetch(
-            `/api/amazon?searchTerm=${encodeURIComponent(searchTerm)}`,
-          );
-          const data = await response.json();
+  // Call useFetch at the top level with searchTerm
+  useFetch(searchTerm);
 
-          if (response.ok) {
-            localStorage.setItem("products", JSON.stringify(data));
-            router.push(`/home-page/${searchTerm}`); // Move the navigation here after fetch
-          } else {
-            toast.error(data.error);
-          }
-        } catch (err) {
-          if (err instanceof Error) {
-            toast.error(err.message);
-          }
-        } finally {
-          setLoading(false);
-        }
-      }
-    };
-
-    handleSearch();
-  }, [searchTerm, router, setLoading]);
-
-  const handleItemsClick = (keyword: string) => {
-    setSearchTerm(keyword);
+  // Event handler to update the search term
+  const handleItemsClick = (term: string) => {
+    setSearchTerm(term);
   };
-
-  // if (loading) {
-  //   <Loading />;
-  // }
 
   return (
     <div

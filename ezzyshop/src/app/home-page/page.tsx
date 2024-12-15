@@ -9,55 +9,50 @@ import perfume from "../../../public/image/perfume.jpg";
 import sofa from "../../../public/image/sofa.webp";
 import ceilingLight from "../../../public/image/ceilingLight.webp";
 import WatchCard from "@/components/home-page-component/WatchCard";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { usePathname } from "next/navigation"; // Import from next/navigation
 
 function HomePage() {
-  const pathname = usePathname(); // Use usePathname hook to get the current route path
-  const [isMounted, setIsMounted] = useState(false); // To check if the component has mounted
-
   useEffect(() => {
-    setIsMounted(true); // Update when the component is mounted
-  }, []);
-
-  useEffect(() => {
-    if (!isMounted) return; // Prevent running before component mounts
-
-    gsap.registerPlugin(ScrollTrigger);
-
-    // Define animations
-    const animation1 = gsap.from(".main-container .cards", {
-      x: 1200,
-      duration: 1,
-      delay: 0.1,
-      ease: "ease-in",
-      stagger: 1,
-    });
-
-    const animation2 = gsap.from(".main-container .cards2", {
-      x: 1300,
-      duration: 3,
-      delay: 0.5,
-      ease: "ease-in",
-      stagger: 1,
-      scrollTrigger: {
-        trigger: ".main-container .cards2",
-        scroller: ".main-page",
-        start: "top 55%",
-        end: "top 30%",
-        scrub: 5,
+    // Initial mount animation
+    const animation1 = gsap.fromTo(
+      ".main-container .cards",
+      { x: 1200 }, // Start position
+      {
+        x: 0, // End position
+        duration: 1,
+        ease: "ease-in",
+        stagger: 0.2,
       },
-    });
+    );
 
-    // Cleanup animations
+    // Scroll-triggered animation
+    const animation2 = gsap.fromTo(
+      ".main-container .cards2",
+      { x: 1300 }, // Start position
+      {
+        x: 0, // End position
+        duration: 3,
+        ease: "ease-in",
+        stagger: 0.5,
+        scrollTrigger: {
+          trigger: ".main-container .cards2",
+          scroller: ".main-page",
+          start: "top 55%",
+          end: "top 30%",
+          scrub: 5,
+        },
+      },
+    );
+
+    // Cleanup on component unmount
     return () => {
       animation1.kill();
       animation2.kill();
       ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
     };
-  }, [isMounted, pathname]); // Trigger the effect again when the pathname changes
+  }, []); // Trigger the effect again when the pathname changes
 
   return (
     <main className="main-page absolute top-48 flex h-screen w-screen flex-col items-center gap-5 overflow-scroll overflow-x-hidden p-5 pb-60 sm:relative sm:top-0 sm:pb-20">

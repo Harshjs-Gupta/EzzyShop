@@ -95,7 +95,7 @@ const ProductDetails: React.FC<ProductsItemType> = ({
 
   return (
     <div className="flex flex-col items-center justify-center sm:flex sm:flex-row">
-      <div className="flex w-full flex-row gap-4 overflow-scroll border-black bg-[#ffd7de] p-1 sm:w-40 sm:flex-col sm:border-r sm:bg-transparent">
+      <div className="flex w-full flex-row gap-4 overflow-hidden border-black bg-[#ffd7de] p-1 sm:w-40 sm:flex-col sm:border-r sm:bg-transparent">
         {images.map((item: string) => (
           <div
             key={item}
