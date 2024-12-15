@@ -116,7 +116,7 @@ const ProductDetails: React.FC<ProductsItemType> = ({
       </div>
       <div className="flex h-screen w-screen flex-col items-center gap-20 p-3 sm:h-full sm:w-full">
         <div className="flex h-auto w-full flex-col gap-2 p-2 sm:flex-row">
-          <div className="flex h-[300px] w-full items-center justify-center rounded-xl bg-white object-cover p-2 sm:w-80">
+          <div className="flex h-[300px] w-full items-center justify-center rounded-xl bg-white object-cover p-2 sm:w-[20%]">
             <Zoom>
               <Image
                 src={main_image}
@@ -128,7 +128,7 @@ const ProductDetails: React.FC<ProductsItemType> = ({
               />
             </Zoom>
           </div>
-          <div className="flex flex-col gap-3 p-3">
+          <div className="flex w-full flex-col gap-3 p-3 sm:w-[80%]">
             <div className="flex flex-col gap-3 text-left">
               <div className="flex gap-2">
                 <span className="text-sm">Sponsored</span>
