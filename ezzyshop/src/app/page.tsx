@@ -70,11 +70,11 @@ export default function Home() {
         <p className="font-semibold">when already have an account.</p>
       </div>
 
-      <span className="bag-animation relative hidden sm:block sm:absolute sm:bottom-0 sm:right-0">
+      <span className="bag-animation relative hidden sm:absolute sm:bottom-0 sm:right-0 sm:block">
         <Image
           src={shopping_bag_image}
           alt="shopping-bag"
-          className="h-96 w-96 sm:h-56 sm:w-56"
+          className="h-56 w-56"
         />
       </span>
     </main>
