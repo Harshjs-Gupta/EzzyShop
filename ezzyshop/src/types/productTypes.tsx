@@ -18,4 +18,5 @@ export interface Product {
   feature_bullets?: string[]; // Optional
   images?: string[]; // Optional
   description?: string; // Optional
+  url: string;
 }

@@ -8,6 +8,7 @@ import { toast } from "react-toastify";
 import { doc, setDoc } from "firebase/firestore";
 import { database } from "@/lib/firebase";
 import { getAuth } from "firebase/auth";
+import Link from "next/link";
 
 interface Props {
   products: Product;
@@ -27,13 +28,14 @@ interface Product {
     rating: number;
   };
   price: PriceDetails;
+  url: string;
 }
 
 const SlugComponent: React.FC<Props> = ({ products }: Props) => {
   // const [searchID, setSearchID] = useState("");
   const { setLoading } = useLoading();
   const router = useRouter();
-  const { asin, title, thumbnail, reviews, price } = products;
+  const { asin, title, thumbnail, reviews, price, url } = products;
   const { before_price, current_price, savings_amount } = price;
 
   const discountPercentage = before_price
@@ -110,14 +112,22 @@ const SlugComponent: React.FC<Props> = ({ products }: Props) => {
         className="flex h-auto w-[265px] cursor-pointer items-center justify-center bg-[#ffffff] object-cover p-2 sm:h-64 sm:w-72"
         onClick={handleDetailsPage}
       >
-        <Image
-          src={thumbnail}
-          alt={`${title} image`}
-          className="productImage rounded-sm"
-          width={180}
-          height={100}
-          priority
-        />
+        {thumbnail ? (
+          <Image
+            src={thumbnail}
+            alt={`${title} image`}
+            className="productImage h-auto w-auto rounded-sm"
+            width={180}
+            height={100}
+          />
+        ) : (
+          <div className="flex h-[100px] w-[180px] flex-col items-center justify-center bg-gray-200">
+            <span className="text-sm text-gray-600">Image not loaded</span>
+            <span className="text-sm text-gray-600">
+              Click for product Details
+            </span>
+          </div>
+        )}
       </div>
       <div className="flex w-96 flex-col gap-3 p-2 sm:w-full sm:p-3">
         <div className="flex flex-col gap-2">
@@ -147,6 +157,17 @@ const SlugComponent: React.FC<Props> = ({ products }: Props) => {
           </div>
           {savings_amount !== 0 && (
             <span className="text-[12px] sm:text-2xl">{`Save Rs ${savings_amount}`}</span>
+          )}
+          {!url ? (
+            <span> </span>
+          ) : (
+            <Link
+              href={url}
+              target="_blank"
+              className="text-[12px] text-blue-600 underline"
+            >
+              Go to Amazon
+            </Link>
           )}
         </div>
         <div className="flex flex-col gap-2">

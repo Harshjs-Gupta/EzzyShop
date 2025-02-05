@@ -18,7 +18,7 @@ function SearchBar({ onItemsSearch }: Props) {
 
   return (
     <>
-      <div className="hidden h-10 w-[32rem] items-center justify-between rounded-full bg-white p-4 sm:flex">
+      <div className="hidden h-10 items-center justify-between rounded-full bg-white p-4 sm:flex sm:w-[18rem] md:w-[32rem]">
         <form
           className="flex w-[32rem] items-center justify-between"
           onSubmit={handleSubmit}

@@ -18,7 +18,7 @@ export async function GET(request: Request) {
     // Perform the Amazon search with amazon-buddy
     const result = await amazon.products({
       keyword: searchTerm,
-      number: 10,
+      number: 50,
       country: "IN",
     });
 

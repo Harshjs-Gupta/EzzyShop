@@ -22,14 +22,16 @@ function SlugProduct() {
 
   // Safely access `products.result` and default to an empty array if it's undefined
   const items = products?.result || [];
+  const uniqueItems = Array.from(
+    new Map(items.map((item) => [item.asin, item])).values(),
+  );
+  // console.log(products);
 
   return (
     <div className="productContainer flex flex-col gap-5 p-3">
-      {items.map((item) => (
+      {uniqueItems.map((item) => (
         <div key={item.asin} className="productsItem">
-          <SlugComponent // Add class to target for animation
-            products={item}
-          />
+          <SlugComponent products={item} />
         </div>
       ))}
     </div>

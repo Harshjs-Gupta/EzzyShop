@@ -75,31 +75,31 @@ function Navbar() {
         <Image
           src={appName}
           alt="appName"
-          className="hidden h-14 w-32 sm:block"
+          className="hidden h-10 w-24 sm:block sm:h-14 sm:w-32"
         />
         <SearchBar onItemsSearch={handleItemsClick} />
         <div className="flex max-w-fit items-center justify-center space-x-5">
           <div className="flex items-center justify-center space-x-5">
             <Link
               href="/home-page"
-              className="text-lg font-semibold hover:text-[#ff63f2] hover:text-shadow-glow"
+              className="font-semibold hover:text-[#ff63f2] hover:text-shadow-glow sm:text-[10px] md:text-lg"
             >
               Home Page
             </Link>
             <span
-              className="cursor-pointer text-lg font-semibold hover:text-[#ff63f2] hover:text-shadow-glow"
+              className="cursor-pointer font-semibold hover:text-[#ff63f2] hover:text-shadow-glow sm:text-[10px] md:text-lg"
               onClick={() => handleItemsClick("smartPhones")}
             >
               Mobiles
             </span>
             <span
-              className="cursor-pointer text-lg font-semibold hover:text-[#ff63f2] hover:text-shadow-glow"
+              className="cursor-pointer font-semibold hover:text-[#ff63f2] hover:text-shadow-glow sm:text-[10px] md:text-lg"
               onClick={() => handleItemsClick("home and kitchen products")}
             >
               Home & Kitchen
             </span>
             <span
-              className="cursor-pointer text-lg font-semibold hover:text-[#ff63f2] hover:text-shadow-glow"
+              className="cursor-pointer font-semibold hover:text-[#ff63f2] hover:text-shadow-glow sm:text-[10px] md:text-lg"
               onClick={handleOrderPage}
             >
               Order
