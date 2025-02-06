@@ -5,6 +5,7 @@ import { collection, getDocs } from "firebase/firestore";
 import { database } from "@/lib/firebase";
 import { useLoading } from "@/app/loadingContext";
 import OrderDetail from "./orderDetail";
+import Navbar from "@/components/home-page-component/navbar";
 
 type OrderProduct = {
   amount: number;
@@ -82,16 +83,19 @@ function OrderPage() {
   //   console.log(orderItems);
 
   return (
-    <div className="relative top-48 flex h-screen w-screen flex-col gap-5 overflow-scroll bg-[#FEE5E9] pb-96 sm:relative sm:top-0 sm:pb-20">
-      <div className="p-3">
-        <span className="text-xl font-semibold">Order Details</span>
+    <>
+      <Navbar />
+      <div className="relative top-48 flex h-screen w-screen flex-col gap-5 overflow-scroll bg-[#FEE5E9] pb-96 sm:relative sm:top-0 sm:pb-20">
+        <div className="p-3">
+          <span className="text-xl font-semibold">Order Details</span>
+        </div>
+        <div className="flex h-screen w-screen flex-col items-center gap-5 bg-[#FEE5E9]">
+          {orderItems.map((item) => (
+            <OrderDetail order={item} key={item.order_id} />
+          ))}
+        </div>
       </div>
-      <div className="flex h-screen w-screen flex-col items-center gap-5 bg-[#FEE5E9]">
-        {orderItems.map((item) => (
-          <OrderDetail order={item} key={item.order_id} />
-        ))}
-      </div>
-    </div>
+    </>
   );
 }
 

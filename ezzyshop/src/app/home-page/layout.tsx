@@ -1,15 +1,10 @@
-import Navbar from "@/components/home-page-component/navbar";
-import "./global.css";
-import { ReactNode } from "react";
+// import Navbar from "@/components/home-page-component/navbar";
+import "./globals.css";
 
-interface LayoutProps {
-  children: ReactNode;
-}
-
-function Layout({ children }: LayoutProps) {
+function Layout({ children }: { children: React.ReactNode }) {
   return (
     <div>
-      <Navbar />
+      {/* <Navbar /> */}
       {children}
     </div>
   );

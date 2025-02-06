@@ -1,6 +1,6 @@
 "use client";
 import GamingItemsCard from "@/components/home-page-component/GamingItemsCard";
-import "./global.css";
+import "./globals.css";
 import ElectronicItemsCard from "@/components/home-page-component/ElectronicItemsCard";
 import ClothsCard from "@/components/home-page-component/clothsCard";
 import Chards from "@/components/home-page-component/ItemsChards";
@@ -12,6 +12,7 @@ import WatchCard from "@/components/home-page-component/WatchCard";
 import { useEffect } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import Navbar from "@/components/home-page-component/navbar";
 
 function HomePage() {
   useEffect(() => {
@@ -55,58 +56,61 @@ function HomePage() {
   }, []); // Trigger the effect again when the pathname changes
 
   return (
-    <main className="main-page absolute top-48 flex h-screen w-screen flex-col items-center gap-5 overflow-scroll overflow-x-hidden p-5 pb-60 sm:relative sm:top-0 sm:pb-20">
-      <div className="flex flex-col items-center justify-center pt-3 text-4xl font-bold capitalize text-white md:text-5xl">
-        <span>Discover & shop</span>
-        <span>the trend</span>
-      </div>
-      <main className="main-container grid grid-flow-row grid-cols-1 gap-5 sm:flex sm:flex-col md:grid md:grid-cols-2 lg:grid-cols-4">
-        <div className="cards">
-          <ElectronicItemsCard />
+    <>
+      <Navbar />
+      <main className="main-page absolute top-48 flex h-screen w-screen flex-col items-center gap-5 overflow-scroll overflow-x-hidden p-5 pb-60 sm:relative sm:top-0 sm:pb-20">
+        <div className="flex flex-col items-center justify-center pt-3 text-4xl font-bold capitalize text-white md:text-5xl">
+          <span>Discover & shop</span>
+          <span>the trend</span>
         </div>
-        <div className="cards">
-          <GamingItemsCard />
-        </div>
-        <div className="cards">
-          <WatchCard />
-        </div>
-        <div className="cards">
-          <ClothsCard />
-        </div>
-        <div className="cards2">
-          <Chards
-            productHeading="Beauty Product"
-            image={beauty}
-            productName="EyeShadow"
-            keyword="beauty"
-          />
-        </div>
-        <div className="cards2">
-          <Chards
-            productHeading="Fragrances"
-            image={perfume}
-            productName="Perfume"
-            keyword="fragrances"
-          />
-        </div>
-        <div className="cards2">
-          <Chards
-            productHeading="Sofa"
-            image={sofa}
-            productName="Foldable Sofa"
-            keyword="sofa"
-          />
-        </div>
-        <div className="cards2">
-          <Chards
-            productHeading="Lights"
-            image={ceilingLight}
-            productName="Ceiling Light"
-            keyword="CeilingLight"
-          />
-        </div>
+        <main className="main-container grid grid-flow-row grid-cols-1 gap-5 sm:flex sm:flex-col md:grid md:grid-cols-2 lg:grid-cols-4">
+          <div className="cards">
+            <ElectronicItemsCard />
+          </div>
+          <div className="cards">
+            <GamingItemsCard />
+          </div>
+          <div className="cards">
+            <WatchCard />
+          </div>
+          <div className="cards">
+            <ClothsCard />
+          </div>
+          <div className="cards2">
+            <Chards
+              productHeading="Beauty Product"
+              image={beauty}
+              productName="EyeShadow"
+              keyword="beauty"
+            />
+          </div>
+          <div className="cards2">
+            <Chards
+              productHeading="Fragrances"
+              image={perfume}
+              productName="Perfume"
+              keyword="fragrances"
+            />
+          </div>
+          <div className="cards2">
+            <Chards
+              productHeading="Sofa"
+              image={sofa}
+              productName="Foldable Sofa"
+              keyword="sofa"
+            />
+          </div>
+          <div className="cards2">
+            <Chards
+              productHeading="Lights"
+              image={ceilingLight}
+              productName="Ceiling Light"
+              keyword="CeilingLight"
+            />
+          </div>
+        </main>
       </main>
-    </main>
+    </>
   );
 }
 

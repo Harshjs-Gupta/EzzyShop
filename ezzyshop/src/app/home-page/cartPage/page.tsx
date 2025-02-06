@@ -6,6 +6,7 @@ import { collection, getDocs } from "firebase/firestore";
 import { database } from "@/lib/firebase";
 import { useLoading } from "@/app/loadingContext";
 import { Product } from "@/types/productTypes";
+import Navbar from "@/components/home-page-component/navbar";
 // Define Product type
 
 // interface CartDetailProps {
@@ -57,20 +58,23 @@ function CartPage() {
   }, [setLoading]);
 
   return (
-    <div className="relative top-48 flex h-screen w-screen flex-col gap-5 overflow-scroll bg-[#FEE5E9] pb-96 sm:relative sm:top-0 sm:pb-20">
-      <div className="p-3">
-        <span className="text-xl font-semibold">Cart Details</span>
+    <>
+      <Navbar />
+      <div className="relative top-48 flex h-screen w-screen flex-col gap-5 overflow-scroll bg-[#FEE5E9] pb-96 sm:relative sm:top-0 sm:pb-20">
+        <div className="p-3">
+          <span className="text-xl font-semibold">Cart Details</span>
+        </div>
+        <div className="flex h-screen w-screen flex-col items-center gap-5 bg-[#FEE5E9]">
+          {cartItems.length > 0 ? (
+            cartItems.map((item) => (
+              <CartDetail products={item} key={item.asin} />
+            ))
+          ) : (
+            <span>Your cart is empty.</span>
+          )}
+        </div>
       </div>
-      <div className="flex h-screen w-screen flex-col items-center gap-5 bg-[#FEE5E9]">
-        {cartItems.length > 0 ? (
-          cartItems.map((item) => (
-            <CartDetail products={item} key={item.asin} />
-          ))
-        ) : (
-          <span>Your cart is empty.</span>
-        )}
-      </div>
-    </div>
+    </>
   );
 }
 
