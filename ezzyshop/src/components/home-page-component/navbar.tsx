@@ -7,49 +7,21 @@ import cart from "@/assets/logo/cart.png";
 import dummy_profile from "../../../public/image/dummy-profile.jpg";
 import menuIcon from "@/assets/icon/menu.png";
 import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
-import { toast } from "react-toastify";
 import { useLoading } from "@/app/loadingContext";
+import useFetch from "@/app/hooks/useFetch";
+import { useState } from "react";
 
 function Navbar() {
-  const [searchTerm, setSearchTerm] = useState("");
-  const { setLoading } = useLoading();
+  const [searchTerm, setSearchTerm] = useState<string | null>(null);
   const router = useRouter();
+  const { setLoading } = useLoading();
 
-  useEffect(
-    function () {
-      const handleSearch = async () => {
-        if (searchTerm) {
-          setLoading(true);
-          try {
-            const response = await fetch(
-              `/api/amazon?searchTerm=${encodeURIComponent(searchTerm)}`,
-            );
-            const data = await response.json();
+  // Call useFetch at the top level with searchTerm
+  useFetch(searchTerm);
 
-            if (response.ok) {
-              localStorage.setItem("products", JSON.stringify(data));
-              router.push(`/home-page/${searchTerm}`);
-            } else {
-              toast.error(data.error);
-            }
-          } catch (err) {
-            if (err instanceof Error) {
-              toast.error(err.message);
-            }
-          } finally {
-            setLoading(false);
-          }
-        }
-      };
-
-      handleSearch();
-    },
-    [searchTerm, router, setLoading],
-  );
-
-  const handleItemsClick = (keyword: string) => {
-    setSearchTerm(keyword);
+  // Event handler to update the search term
+  const handleItemsClick = (term: string) => {
+    setSearchTerm(term);
   };
 
   function handleLogOut() {
@@ -94,7 +66,7 @@ function Navbar() {
             </span>
             <span
               className="cursor-pointer font-semibold hover:text-[#ff63f2] hover:text-shadow-glow sm:text-[10px] md:text-lg"
-              onClick={() => handleItemsClick("home and kitchen products")}
+              onClick={() => handleItemsClick("kitchen products")}
             >
               Home & Kitchen
             </span>
