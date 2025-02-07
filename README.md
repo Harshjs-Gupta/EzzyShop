@@ -26,7 +26,7 @@
 <br />
 <div align="center">
   <a href="https://github.com/Harshjs-Gupta/EzzyShop">
-    <img src="/ezzyshop/public/appName.png" alt="Logo" width="80" height="80">
+    <img src="/ezzyshop/public/EzzyShopLogo.png" alt="Logo" width="80" height="80">
   </a>
 
   <h3 align="center">EzzyShop e-commerce site</h3>
