@@ -29,7 +29,7 @@
     <img src="/public/appName.png" alt="Logo" width="80" height="80">
   </a>
 
-  <h3 align="center">EzzyShop E-Commerce Site</h3>
+  <h3 align="center">EzzyShop e-commerce site</h3>
 
   <p align="center">
     This is a e-commerce shopping site here you see all products, product details, images, and many more things.
