@@ -72,8 +72,9 @@
 
 - [![Next.js]][Next-url]
 - [![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)][React-url]
-- [![TailwindCSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
+- [![TailwindCSS][Tailwind]][Tailwind-url]
 - [![Framer Motion](https://img.shields.io/badge/Framer_Motion-0055FF?style=for-the-badge&logo=framer&logoColor=white)](https://www.framer.com/motion/)
+- [![Firebase][Firebase-badge]][Firebase-url]
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -127,10 +128,14 @@ _Below is an example of how you can instruct your audience on installing and set
 [license-url]: https://github.com/othneildrew/Best-README-Template/blob/master/LICENSE.txt
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://linkedin.com/in/othneildrew
-[product-screenshot]: public/images/portfolio.gif
+[product-screenshot]: /ezzyshop/public/EzzyShop.gif
 [Next.js]: https://img.shields.io/badge/next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white
 [Next-url]: https://nextjs.org/
 [React.js]: https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB
 [React-url]: https://reactjs.org/
 [github-shield]: https://img.shields.io/badge/GitHub-Repo-blue?logo=github
 [github-url]: https://github.com/Harshjs-Gupta/
+[Firebase-badge]: https://img.shields.io/badge/Firebase-FFCA28?style=for-the-badge&logo=firebase&logoColor=white
+[Firebase-url]: https://firebase.google.com/
+[Tailwind]: https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white
+[Tailwind-url]: https://tailwindcss.com/
