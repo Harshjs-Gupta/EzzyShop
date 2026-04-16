@@ -163,9 +163,22 @@ const CartDetail: React.FC<{ products: Product }> = ({ products }) => {
     payment.open();
   }
 
+  const getBeforePrice = (value: number) => {
+    const str = value.toString();
+
+    // Case 1: duplicated (6990069900 → 69900)
+    const half = str.length / 2;
+    if (str.length % 2 === 0 && str.slice(0, half) === str.slice(half)) {
+      return Number(str.slice(0, half));
+    }
+
+    // Case 2: mixed (6990009700 → 69900)
+    return Number(str.slice(0, -4)); // remove last 4 digits (saving part)
+  };
+
   return (
     <div className="mb-5 flex h-auto w-full flex-col items-center gap-2 p-2 sm:flex-row">
-      <div className="flex h-full w-60 items-center justify-center rounded-xl bg-white object-cover p-2">
+      <div className="flex h-full w-60 items-center justify-center rounded-xl bg-black/30 object-cover p-2 backdrop-blur-md">
         <TransformWrapper>
           <TransformComponent>
             <Image
@@ -179,8 +192,8 @@ const CartDetail: React.FC<{ products: Product }> = ({ products }) => {
           </TransformComponent>
         </TransformWrapper>
       </div>
-      <div className="flex w-96 flex-col gap-3 p-3 sm:w-full">
-        <div className="flex flex-col gap-3 text-left">
+      <div className="flex w-auto flex-col gap-3 p-3 sm:w-full">
+        <div className="flex flex-col gap-3 text-left text-[#d0a348]">
           <div className="flex gap-2">
             <span className="text-sm">Sponsored</span>
             <Image src={info} alt="info" className="h-5 w-5" />
@@ -195,45 +208,47 @@ const CartDetail: React.FC<{ products: Product }> = ({ products }) => {
                 <div className="flex items-center justify-center gap-1">
                   <span className="text-[12px] line-through sm:text-xl">
                     {quantity === 1
-                      ? `M.R.P: Rs ${Math.trunc(before_price)}`
-                      : `M.R.P Rs ${Math.trunc(quantityBeforePrice)}`}
+                      ? `M.R.P: Rs ${Math.trunc(getBeforePrice(before_price))}`
+                      : `M.R.P Rs ${Math.trunc(getBeforePrice(quantityBeforePrice))}`}
                   </span>
                 </div>
               )}
               <span className="text-[12px] font-semibold sm:text-xl">
                 {savings_percent !== 0 &&
-                  `(${Math.trunc(savings_percent)}% off)`}
+                  `(${Math.trunc(((getBeforePrice(before_price) - current_price) / getBeforePrice(before_price)) * 100)} % off)`}
               </span>
             </div>
           </div>
           {savings_amount !== 0 && (
             <span>
               {quantity === 1
-                ? `Save Rs ${savings_amount}`
-                : `Save Rs ${quantitySavingPrice}`}
+                ? `Save Rs ${getBeforePrice(before_price) - current_price}`
+                : `Save Rs ${getBeforePrice(quantityBeforePrice) - quantityPrice}`}
             </span>
           )}
-          <div className="z-2 flex items-center gap-5 sm:gap-72">
+          <div className="z-2 flex items-center gap-5 sm:gap-72 md:gap-10 xl:gap-72">
             <Script
               type="text/javascript"
               src="https://checkout.razorpay.com/v1/checkout.js"
             />
             <button
-              className="h-8 w-24 rounded-full bg-yellow-400 text-sm font-semibold active:bg-yellow-500"
+              className="h-8 w-24 rounded-full bg-[#d0a348] text-sm font-bold text-black active:bg-[#d0a348]/80"
               onClick={createOrder}
             >
               Buy Now
             </button>
             <div className="flex">
               <button
-                className="w-5 rounded-l-lg bg-gray-300"
+                className="w-5 rounded-l-lg bg-[#d0a348] text-lg font-semibold text-black active:bg-[#ffc758]"
                 onClick={handleMinusQuantity}
               >
                 -
               </button>
-              <span className="w-20 bg-white text-center">{quantity}</span>
+              <span className="w-20 bg-black/40 text-center text-lg font-semibold">
+                {quantity}
+              </span>
               <button
-                className="w-5 rounded-r-lg bg-gray-300"
+                className="w-5 rounded-r-lg bg-[#d0a348] text-lg font-semibold text-black active:bg-[#ffc758]"
                 onClick={handleAddQuantity}
               >
                 +

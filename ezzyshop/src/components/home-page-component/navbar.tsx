@@ -35,47 +35,49 @@ function Navbar() {
     setLoading(false);
   }
 
-  function handleOrderPage() {
-    setLoading(true);
-    router.push("/home-page/order-page");
-    setLoading(false);
-  }
-
   return (
     <>
       <nav className="nav-background hidden h-14 w-full items-center justify-between px-2 sm:flex">
-        <Image
-          src={appName}
-          alt="appName"
-          className="hidden h-10 w-24 sm:block sm:h-14 sm:w-32"
-        />
+        <Link href="/home-page">
+          <Image
+            src={appName}
+            alt="appName"
+            className="mt-2 hidden h-10 w-24 object-cover sm:block sm:h-14 sm:w-32 md:h-10 md:w-24 xl:h-14 xl:w-32"
+          />
+        </Link>
         <SearchBar onItemsSearch={handleItemsClick} />
-        <div className="flex max-w-fit items-center justify-center space-x-5">
-          <div className="flex items-center justify-center space-x-5">
+        <div className="flex max-w-fit items-center justify-center space-x-5 text-gray-300">
+          <div className="flex items-center justify-center space-x-5 text-base sm:text-[10px] md:text-sm xl:text-lg">
             <Link
               href="/home-page"
-              className="font-semibold hover:text-[#ff63f2] hover:text-shadow-glow sm:text-[10px] md:text-lg"
+              prefetch={true}
+              className="font-semibold transition hover:scale-105 hover:text-[#d0a348] active:scale-95"
             >
-              Home Page
+              Home
             </Link>
-            <span
-              className="cursor-pointer font-semibold hover:text-[#ff63f2] hover:text-shadow-glow sm:text-[10px] md:text-lg"
+            <Link
+              href={"/home-page/${searchTerm}"}
+              prefetch={true}
+              className="cursor-pointer font-semibold transition hover:scale-105 hover:text-[#d0a348] active:scale-95"
               onClick={() => handleItemsClick("smartPhones")}
             >
               Mobiles
-            </span>
-            <span
-              className="cursor-pointer font-semibold hover:text-[#ff63f2] hover:text-shadow-glow sm:text-[10px] md:text-lg"
+            </Link>
+            <Link
+              href={"/home-page/${searchTerm}"}
+              prefetch={true}
+              className="cursor-pointer font-semibold transition hover:scale-105 hover:text-[#d0a348] active:scale-95"
               onClick={() => handleItemsClick("kitchen products")}
             >
-              Home & Kitchen
-            </span>
-            <span
-              className="cursor-pointer font-semibold hover:text-[#ff63f2] hover:text-shadow-glow sm:text-[10px] md:text-lg"
-              onClick={handleOrderPage}
+              Kitchen
+            </Link>
+            <Link
+              href="/home-page/order-page"
+              prefetch={true}
+              className="cursor-pointer font-semibold transition hover:scale-105 hover:text-[#d0a348] active:scale-95"
             >
               Order
-            </span>
+            </Link>
           </div>
           <div className="flex items-center justify-center space-x-5">
             <Image
@@ -122,28 +124,31 @@ function Navbar() {
           <div className="flex items-center justify-center space-x-5">
             <Link
               href="/home-page"
-              className="text-md font-semibold hover:text-[#ff63f2] hover:text-shadow-glow"
+              prefetch={true}
+              className="text-md font-semibold transition hover:scale-105 hover:text-[#d0a348] active:scale-95"
             >
               Home
             </Link>
             <Link
               href={"/home-page/${searchTerm}"}
-              className="cursor-pointer text-lg font-semibold hover:text-[#ff63f2] hover:text-shadow-glow"
+              prefetch={true}
+              className="cursor-pointer text-lg font-semibold transition hover:scale-105 hover:text-[#d0a348] active:scale-95"
               onClick={() => handleItemsClick("smartPhones")}
             >
               Mobiles
             </Link>
             <Link
               href={"/home-page/${searchTerm}"}
-              className="cursor-pointer text-lg font-semibold hover:text-[#ff63f2] hover:text-shadow-glow"
+              prefetch={true}
+              className="cursor-pointer text-lg font-semibold transition hover:scale-105 hover:text-[#d0a348] active:scale-95"
               onClick={() => handleItemsClick("home and kitchen products")}
             >
               Home & Kitchen
             </Link>
             <Link
               href="/home-page/order-page"
-              className="text-md font-semibold hover:text-[#ff63f2] hover:text-shadow-glow"
-              onClick={handleOrderPage}
+              prefetch={true}
+              className="text-md font-semibold transition hover:scale-105 hover:text-[#d0a348] active:scale-95"
             >
               Order
             </Link>

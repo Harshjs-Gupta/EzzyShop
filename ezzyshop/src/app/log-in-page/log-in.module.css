@@ -1,5 +1,5 @@
 .background {
-  background: linear-gradient(90deg, #ffaaf8, #fff5af);
+  background: linear-gradient(90deg, #3f3f3f, #101010);
 }
 
 .tShirt {
@@ -13,17 +13,6 @@
   100% {
     transform: translateY(0);
   }
-}
-
-.google_log_in {
-  background: #fff;
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  padding: 10px;
-  gap: 10px;
-  margin-bottom: 20px;
-  border-radius: 8px;
 }
 
 .cart_animation {
@@ -42,6 +31,15 @@
 
 @media (min-width: 768px) {
   .background {
-    background-color: #ffaaf8;
+    background-color: #101010;
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
   }
 }

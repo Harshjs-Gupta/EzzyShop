@@ -17,6 +17,7 @@ function useFetch(search: string | null) {
           `/api/amazon?searchTerm=${encodeURIComponent(search)}`,
         );
         const data = await response.json();
+        console.log(data);
 
         if (response.ok) {
           localStorage.setItem("products", JSON.stringify(data));

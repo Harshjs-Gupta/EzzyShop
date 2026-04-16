@@ -18,16 +18,19 @@ function WatchCard() {
 
   return (
     <div
-      className="flex h-[28rem] w-72 flex-col space-y-4 bg-[#fefef8d6] p-3"
+      className="flex h-[28rem] w-72 flex-col space-y-4 bg-black/30 p-3 text-[#f7c35b] backdrop-blur-md"
       onClick={() => handleItemsClick("appleWatch")}
     >
       <span className="text-xl font-semibold">Watch</span>
-      <div className="flex h-3/4 w-full cursor-pointer flex-col gap-3 bg-[#FEF3F0]">
+      <div className="flex h-3/4 w-full cursor-pointer flex-col gap-3 bg-black/40">
         <Image src={watch} alt="dinner_set" />
       </div>
       <span>Apple Watch</span>
       <span>
-        <Link href="#" className="text-blue-700 underline">
+        <Link
+          href="#"
+          className="cursor-pointer font-semibold text-[#CFCFCF] underline transition hover:text-[#f7c35b]"
+        >
           Show More
         </Link>
       </span>

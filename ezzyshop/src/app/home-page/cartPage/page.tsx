@@ -60,17 +60,21 @@ function CartPage() {
   return (
     <>
       <Navbar />
-      <div className="relative top-48 flex h-screen w-screen flex-col gap-5 overflow-scroll bg-[#FEE5E9] pb-96 sm:relative sm:top-0 sm:pb-20">
+      <div className="relative top-48 flex h-screen w-screen flex-col gap-5 overflow-scroll bg-gradient-to-tl from-[#3f3f3f] to-[#101010] pb-96 sm:relative sm:top-0 sm:pb-20">
         <div className="p-3">
-          <span className="text-xl font-semibold">Cart Details</span>
+          <span className="text-2xl font-semibold text-[#d0a348]">
+            Cart Details
+          </span>
         </div>
-        <div className="flex h-screen w-screen flex-col items-center gap-5 bg-[#FEE5E9]">
+        <div className="flex h-screen w-screen flex-col items-center gap-5">
           {cartItems.length > 0 ? (
             cartItems.map((item) => (
               <CartDetail products={item} key={item.asin} />
             ))
           ) : (
-            <span>Your cart is empty.</span>
+            <span className="text-2xl font-semibold text-[#d0a348]">
+              Your cart is empty.
+            </span>
           )}
         </div>
       </div>

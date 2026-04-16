@@ -102,10 +102,10 @@ function SignUpPage() {
       <div className="flex h-full w-full flex-col items-center justify-between gap-5 sm:flex sm:h-96 sm:flex-row sm:items-center sm:justify-between">
         <CartImage />
         <form
-          className="animation flex h-96 w-72 flex-col items-center justify-center rounded-3xl border border-black bg-[#FFE8E8] p-5"
+          className="animation flex h-auto w-72 flex-col items-center justify-center rounded-3xl border border-[#d0a348] bg-[#3f3f3f] px-2 py-4 text-white"
           onSubmit={handleSignIn}
         >
-          <label htmlFor="file" className="flex w-full">
+          <label htmlFor="file" className="flex w-full items-center gap-2 px-2">
             <div className="flex flex-col gap-3">
               <div className="h-10 w-10 overflow-hidden rounded-lg">
                 <Image
@@ -116,13 +116,10 @@ function SignUpPage() {
                   height={100}
                 />
               </div>
-              <span className="text-sm">Your image</span>
             </div>
-            <div className="flex w-full">
-              <div className="flex flex-col text-sm">
-                <span>Upload an image</span>
-                <span className="text-red-500">Profile pic is required</span>
-              </div>
+            <div className="flex flex-col text-sm">
+              <span>Upload an image</span>
+              <span className="text-[#cfa041]">Profile pic is required</span>
             </div>
           </label>
           <input
@@ -131,11 +128,11 @@ function SignUpPage() {
             style={{ display: "none" }}
             onChange={handleAvatar}
           />
-          <div className="h-60 space-y-5 p-2">
+          <div className="mt-2 h-auto space-y-5 p-2">
             <input
               type="text"
               name="username"
-              className="w-64 rounded-lg border border-black bg-transparent p-1"
+              className="w-64 rounded-lg border border-[#d0a348] bg-transparent p-2 outline-none"
               placeholder="Username"
               value={username}
               onChange={(e) => setUsername(e.target.value)}
@@ -143,7 +140,7 @@ function SignUpPage() {
             <input
               type="email"
               name="email"
-              className="w-64 rounded-lg border border-black bg-transparent p-1"
+              className="w-64 rounded-lg border border-[#d0a348] bg-transparent p-2 outline-none"
               placeholder="Email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
@@ -151,7 +148,7 @@ function SignUpPage() {
             <input
               type="password"
               name="password"
-              className="w-64 rounded-lg border border-black bg-transparent p-1"
+              className="w-64 rounded-lg border border-[#d0a348] bg-transparent p-2 outline-none"
               placeholder="Password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
@@ -160,14 +157,14 @@ function SignUpPage() {
           <div className="flex flex-col items-center justify-center gap-4">
             <button
               disabled={!!isLoading}
-              className="sign-up-button flex h-10 w-40 items-center justify-center rounded-full border border-black p-2 font-bold"
+              className="sign-up-button flex h-10 w-40 items-center justify-center rounded-full border border-black p-2 font-bold text-black"
             >
               {isLoading ? "In Process..." : "Sign Up"}
             </button>
             <p className="flex space-x-2 text-sm">
               <Link
                 href="/log-in-page"
-                className="cursor-pointer text-blue-600 underline"
+                className="cursor-pointer text-[#d0a348] underline"
               >
                 Log in
               </Link>
@@ -176,7 +173,7 @@ function SignUpPage() {
           </div>
           <div className="flex flex-col text-center">
             <span className="text-sm">Or</span>
-            <Link href="/log-in-page" className="font-semibold text-purple-800">
+            <Link href="/log-in-page" className="font-semibold text-yellow-500">
               Google Sign in
             </Link>
           </div>

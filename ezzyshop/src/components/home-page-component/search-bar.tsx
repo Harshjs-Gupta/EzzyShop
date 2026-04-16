@@ -18,7 +18,7 @@ function SearchBar({ onItemsSearch }: Props) {
 
   return (
     <>
-      <div className="hidden h-10 items-center justify-between rounded-full bg-white p-4 sm:flex sm:w-[18rem] md:w-[32rem]">
+      <div className="hidden h-10 w-[32rem] items-center justify-between rounded-full border border-[#d0a348] bg-transparent p-4 sm:flex sm:w-[18rem] md:w-[24rem] xl:w-[34rem]">
         <form
           className="flex w-[32rem] items-center justify-between"
           onSubmit={handleSubmit}
@@ -26,7 +26,7 @@ function SearchBar({ onItemsSearch }: Props) {
           <input
             type="text"
             placeholder="Search products..."
-            className="flex-1 outline-none placeholder:font-medium placeholder:text-black"
+            className="flex-1 bg-transparent text-[#d0a348] outline-none placeholder:font-medium placeholder:text-[#d0a348]"
             value={searchValue}
             onChange={(e) => setSearchValue(e.target.value)}
           />

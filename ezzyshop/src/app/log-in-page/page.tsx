@@ -81,11 +81,12 @@ function LogInPage() {
         <Image
           src={cart}
           alt="cart"
+          loading="lazy"
           className={`${style.cart_animation} h-40 w-40 sm:h-80 sm:w-80`}
         />
-        <div className="animation flex h-80 w-72 flex-col items-center justify-center rounded-3xl border border-black bg-[#FFE8E8] p-5">
+        <div className="animation flex h-80 w-72 flex-col items-center justify-center rounded-3xl border border-[#d0a348] bg-[#3f3f3f] p-5 text-white">
           <button
-            className={`${style.google_log_in} h-10 w-full`}
+            className={`${style.google_log_in} flex h-10 w-full items-center justify-center gap-2 rounded-lg border border-[#d0a348] hover:bg-gray-500/20 active:bg-gray-500/30`}
             onClick={handleGoogleAuth}
           >
             <Image src={GoogleLogo} alt="GoogleLogo" className="w-6" />
@@ -99,7 +100,7 @@ function LogInPage() {
               placeholder="Email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="h-10 w-64 rounded-lg border border-black p-2 placeholder:text-black focus:outline-none"
+              className="h-10 w-64 rounded-lg border border-[#d0a348] bg-transparent p-2 outline-none placeholder:text-gray-300 focus:outline-none"
             />
             <input
               type="password"
@@ -107,12 +108,12 @@ function LogInPage() {
               placeholder="Password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="h-10 w-64 rounded-lg border border-black p-2 placeholder:text-black focus:outline-none"
+              className="h-10 w-64 rounded-lg border border-[#d0a348] bg-transparent p-2 outline-none placeholder:text-gray-300 focus:outline-none"
             />
             <div className="animation flex flex-col items-center justify-center gap-4">
               <button
                 disabled={!!isLoading}
-                className="log-in-button flex h-10 w-40 items-center justify-center rounded-full border border-black p-2 font-bold"
+                className="log-in-button flex h-10 w-40 items-center justify-center rounded-full border border-black p-2 font-bold text-black"
               >
                 {isLoading ? "In Process..." : "Login"}
               </button>
@@ -123,6 +124,7 @@ function LogInPage() {
           <Image
             src={tShirt}
             alt="tShirtImage"
+            loading="lazy"
             className={`${style.tShirt} relative bottom-16 sm:relative sm:bottom-36`}
           />
         </div>

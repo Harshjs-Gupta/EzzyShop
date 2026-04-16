@@ -17,17 +17,17 @@ function GamingItemsCard() {
 
   return (
     <div
-      className="flex h-[28rem] w-72 flex-col space-y-4 bg-[#fefef8d6] p-3"
+      className="flex h-[28rem] w-72 flex-col space-y-4 bg-black/30 p-3 text-[#f7c35b] backdrop-blur-md"
       onClick={() => handleItemsClick("ps5")}
     >
       <span className="text-xl font-semibold">Gaming Accessories</span>
-      <div className="flex h-3/4 w-full cursor-pointer flex-col gap-3 bg-[#fefef889] p-3">
+      <div className="flex h-3/4 w-full cursor-pointer flex-col gap-3 bg-black/40 p-3">
         <Image src={ps5} alt="Ps5" />
       </div>
       <span>Ps5</span>
       <p>
         <span
-          className="cursor-pointer text-blue-700 underline"
+          className="cursor-pointer font-semibold text-[#CFCFCF] underline transition hover:text-[#f7c35b]"
           onClick={(e) => {
             e.stopPropagation();
             handleItemsClick("gamingConsole");
