@@ -13,7 +13,7 @@ const config: Config = {
         foreground: "var(--foreground)",
       },
       textShadow: {
-        glow: "0 0 5px #fc9bf4, 0 0 10px #fc9bf4, 0 0 20px #fc9bf4, 0 0 30px #fc9bf4, 0 0 40px #fc9bf4",
+        glow: "0 0 5px #d0a348, 0 0 8px #d0a348, 0 0 8px #d0a348, 0 0 8px #d0a348, 0 0 8px #d0a348",
       },
     },
   },
