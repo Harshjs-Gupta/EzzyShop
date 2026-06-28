@@ -169,7 +169,7 @@ export default function Dashboard() {
   const raw = localStorage.getItem("user");
   const storedUser = raw ? JSON.parse(raw) : null;
   if (storedUser?.name) setUserName(storedUser.name);
-  getUser()
+  getUser() 
   },[])
 
   return (
