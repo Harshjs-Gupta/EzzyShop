@@ -2,6 +2,7 @@
 import Image from "next/image";
 import search_icon from "@/assets/icon/search_icon.png";
 import { FormEvent, useState } from "react";
+import {FaSearch} from "react-icons/fa"
 
 interface Props {
   onItemsSearch: (searchTerm: string) => void; // Specify the type
@@ -18,47 +19,38 @@ function SearchBar({ onItemsSearch }: Props) {
 
   return (
     <>
-      <div className="hidden h-10 w-[32rem] items-center justify-between rounded-full border border-[#d0a348] bg-transparent p-4 sm:flex sm:w-[18rem] md:w-[24rem] xl:w-[34rem]">
+    {/* // ! Desktop view 👇 */}
+      <div className="hidden h-10 w-lg items-center justify-between rounded-full border border-gold-default bg-transparent p-4 sm:flex sm:w-[18rem] md:w-[24rem] xl:w-136">
         <form
-          className="flex w-[32rem] items-center justify-between"
+          className="flex w-lg items-center justify-between"
           onSubmit={handleSubmit}
         >
           <input
             type="text"
             placeholder="Search products..."
-            className="flex-1 bg-transparent text-[#d0a348] outline-none placeholder:font-medium placeholder:text-[#d0a348]"
+            className="flex-1 bg-transparent text-gold-default outline-none placeholder:font-medium placeholder:text-gold-default"
             value={searchValue}
             onChange={(e) => setSearchValue(e.target.value)}
           />
           <button type="submit">
-            <Image
-              src={search_icon}
-              alt="Search" // Updated alt text for better accessibility
-              className="h-6 w-6 cursor-pointer"
-            />
+            <FaSearch className="text-gold-default text-xl cursor-pointer"/>
           </button>
         </form>
       </div>
-      {/* ! Mobile view 👇 */}
+      {/*  // ! Mobile view 👇 */}
       <div className="flex h-14 w-full items-center justify-between rounded-xl bg-white sm:hidden">
-        <form className="p-4" onSubmit={handleSubmit}>
+        <form className="p-4 w-full" onSubmit={handleSubmit}>
           <input
             type="text"
             placeholder="Search products..."
-            className="flex-1 outline-none placeholder:font-medium placeholder:text-black"
+            className="flex-1 w-full outline-none placeholder:font-medium placeholder:text-black"
             value={searchValue}
             onChange={(e) => setSearchValue(e.target.value)}
           />
         </form>
-        <div className="flex h-14 w-14 items-center justify-center rounded-r-xl bg-[#ffaaf8] active:bg-[#fd8af3]">
+        <div className="flex h-14 w-14 items-center justify-center rounded-r-xl bg-gold-default active:bg-gold-light">
           <button type="submit" form="searchForm">
-            {" "}
-            {/* Added button and form ID for submit */}
-            <Image
-              src={search_icon}
-              alt="Search" // Updated alt text for better accessibility
-              className="h-10 w-10 cursor-pointer"
-            />
+             <FaSearch className="text-luxury-black text-2xl cursor-pointer"/>
           </button>
         </div>
       </div>
