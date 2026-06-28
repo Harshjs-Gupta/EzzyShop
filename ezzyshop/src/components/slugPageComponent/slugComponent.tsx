@@ -107,9 +107,9 @@ const SlugComponent: React.FC<Props> = ({ products }: Props) => {
   }
 
   return (
-    <div className="flex h-auto w-full overflow-hidden border border-gray-400 bg-[#ffdcdc]">
+    <div className="flex h-auto w-full overflow-hidden border border-gold-default bg-luxury-card text-white">
       <div
-        className="flex h-auto w-[265px] cursor-pointer items-center justify-center bg-[#ffffff] object-cover p-2 sm:h-64 sm:w-72"
+        className="flex h-auto w-[265px] cursor-pointer items-center justify-center bg-white object-cover p-2 border-r border-gold-default sm:h-64 sm:w-72"
         onClick={handleDetailsPage}
       >
         {thumbnail ? (
@@ -121,9 +121,9 @@ const SlugComponent: React.FC<Props> = ({ products }: Props) => {
             height={100}
           />
         ) : (
-          <div className="flex h-[100px] w-[180px] flex-col items-center justify-center bg-gray-200">
-            <span className="text-sm text-gray-600">Image not loaded</span>
-            <span className="text-sm text-gray-600">
+          <div className="flex h-[100px] w-[180px] flex-col items-center justify-center bg-gray-800">
+            <span className="text-sm text-gray-400">Image not loaded</span>
+            <span className="text-sm text-gray-400">
               Click for product Details
             </span>
           </div>
@@ -132,31 +132,31 @@ const SlugComponent: React.FC<Props> = ({ products }: Props) => {
       <div className="flex w-96 flex-col gap-3 p-2 sm:w-full sm:p-3">
         <div className="flex flex-col gap-2">
           <div className="flex items-center gap-2">
-            <span className="text-sm">Sponsored</span>
+            <span className="text-sm text-gold-dim">Sponsored</span>
             <Image src={info} alt="info" className="h-4 w-4 sm:h-5 sm:w-5" />
           </div>
           <span
-            className="cursor-pointer text-[12px] font-semibold hover:text-purple-600 sm:text-[18px]"
+            className="cursor-pointer text-[12px] font-semibold hover:text-gold-default sm:text-[18px]"
             onClick={handleDetailsPage}
           >
             {title}
           </span>
           <StartRating defaultRating={reviews.rating} size={20} maxRating={5} />
           <div className="flex flex-col items-start gap-1 sm:flex-row sm:gap-2">
-            <span className="text-[12px] font-bold sm:text-3xl">{`Rs ${current_price}`}</span>
+            <span className="text-[12px] font-bold text-gold-light sm:text-3xl">{`Rs ${current_price}`}</span>
             <div className="flex gap-2">
               {before_price !== 0 && (
                 <div className="flex items-center justify-center gap-1">
-                  <span className="text-[12px] line-through sm:text-xl">{`M.R.P: Rs ${before_price}`}</span>
+                  <span className="text-[12px] line-through text-gold-dim sm:text-xl">{`M.R.P: Rs ${before_price}`}</span>
                 </div>
               )}
-              <span className="text-[12px] font-semibold sm:text-xl">
+              <span className="text-[12px] font-semibold text-gold-muted sm:text-xl">
                 {discount !== 0 && `(${Math.trunc(discount)}% off)`}
               </span>
             </div>
           </div>
           {savings_amount !== 0 && (
-            <span className="text-[12px] sm:text-2xl">{`Save Rs ${savings_amount}`}</span>
+            <span className="text-[12px] text-gold-light sm:text-2xl">{`Save Rs ${savings_amount}`}</span>
           )}
           {!url ? (
             <span> </span>
@@ -164,7 +164,7 @@ const SlugComponent: React.FC<Props> = ({ products }: Props) => {
             <Link
               href={url}
               target="_blank"
-              className="text-[12px] text-blue-600 underline"
+              className="text-[12px] text- hover:underline"
             >
               Go to Amazon
             </Link>
@@ -173,7 +173,7 @@ const SlugComponent: React.FC<Props> = ({ products }: Props) => {
         <div className="flex flex-col gap-2">
           <button
             onClick={() => addToCart(asin)}
-            className="h-8 w-20 rounded-full bg-yellow-400 text-[12px] font-semibold sm:h-8 sm:w-24 sm:text-sm"
+            className="h-8 w-20 rounded-full bg- hover:bg-gold-light hover:text-luxury-black text-gold-light text-[12px] font-semibold sm:h-8 sm:w-24 sm:text-sm transition-colors duration-200"
           >
             Add to cart
           </button>
