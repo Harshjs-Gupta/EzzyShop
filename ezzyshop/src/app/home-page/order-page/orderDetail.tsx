@@ -44,21 +44,21 @@ const OrderDetail: React.FC<OrderProduct> = ({ order }) => {
 
   return (
     <div className="mb-5 flex h-auto w-full items-center gap-2 p-2">
-      <div className="flex h-full w-60 items-center justify-center rounded-xl bg-white object-cover p-2">
+      {/* <div className="flex h-full w-60 items-center justify-center rounded-xl bg-white object-cover p-2"> */}
         <TransformWrapper>
           <TransformComponent>
             <Image
               src={thumbnail}
               alt={`${title} image`}
-              className="productImage rounded-sm"
+              className="productImage rounded-xl"
               width={150}
               height={100}
               priority
             />
           </TransformComponent>
         </TransformWrapper>
-      </div>
-      <div className="flex w-96 flex-col gap-3 p-3 sm:w-full">
+      {/* </div> */}
+      <div className="flex w-96 flex-col gap-3 p-3 sm:w-full text-[#d0a348]">
         <div className="flex flex-col gap-3 text-left">
           <span className="text-[12px] font-semibold sm:text-xl">{title}</span>
           <div className="flex flex-col items-start gap-1 sm:flex-row sm:items-center sm:gap-2">
