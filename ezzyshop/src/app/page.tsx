@@ -11,7 +11,7 @@ export default function Home() {
   const [isRedirecting, setIsRedirecting] = useState(false);
 
   useEffect(() => {
-    const storedUser = JSON.parse(localStorage.getItem("user"));
+    const storedUser = JSON.parse(localStorage.getItem("user") || "{}");
 
     if (storedUser?.email) {
       setIsRedirecting(true);
