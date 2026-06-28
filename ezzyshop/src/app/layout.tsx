@@ -4,6 +4,13 @@ import "./globals.css";
 import Notification from "@/components/toastifyNotification/notification";
 import { LoadingProvider } from "./loadingContext";
 import Loading from "./loading";
+import { cn } from "@/lib/utils";
+import { GeistSans } from "geist/font/sans";
+import { GeistMono } from "geist/font/mono";
+import ReduxProvider from "@/redux/provider";
+
+// const geist = Geist({ subsets: ["latin"], variable: "--font-sans" });
+// const geistMono = Geist_Mono({ subsets: ["latin"], variable: "--font-mono" });
 
 const arimaSans = localFont({
   src: "./fonts/Arima-Light.ttf",
@@ -27,15 +34,18 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body
-        className={`${arimaSans.variable} ${arimaMono.variable} antialiased`}
-      >
-        <LoadingProvider>
-          <Notification />
-          {children}
-          <Loading /> {/* Global Loading component */}
-        </LoadingProvider>
+    <html
+      lang="en"
+      className={cn(GeistSans.variable, GeistMono.variable, "font-sans")}
+    >
+      <body className={`${arimaSans.variable} ${arimaMono.variable}`}>
+        <ReduxProvider>
+          <LoadingProvider>
+            <Notification />
+            {children}
+            <Loading /> {/* Global Loading component */}
+          </LoadingProvider>
+        </ReduxProvider>
       </body>
     </html>
   );
