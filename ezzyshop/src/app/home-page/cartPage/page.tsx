@@ -6,7 +6,6 @@ import { collection, getDocs } from "firebase/firestore";
 import { database } from "@/lib/firebase";
 import { useLoading } from "@/app/loadingContext";
 import { Product } from "@/types/productTypes";
-import Navbar from "@/components/home-page-component/navbar";
 // Define Product type
 
 // interface CartDetailProps {
@@ -59,8 +58,7 @@ function CartPage() {
 
   return (
     <>
-      <Navbar />
-      <div className="relative top-48 flex h-screen w-screen flex-col gap-5 overflow-scroll bg-gradient-to-tl from-[#3f3f3f] to-[#101010] pb-96 sm:relative sm:top-0 sm:pb-20">
+      <div className="relative top-48 flex h-screen w-screen flex-col gap-5 overflow-scroll overflow-x-hidden bg-linear-to-tl from-luxury-dark to-luxury-card pb-96 sm:relative sm:top-0 sm:pb-20">
         <div className="p-3">
           <span className="text-2xl font-semibold text-[#d0a348]">
             Cart Details
