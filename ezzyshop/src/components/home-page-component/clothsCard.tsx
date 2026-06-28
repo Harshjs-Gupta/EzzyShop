@@ -20,7 +20,7 @@ function ClothsCard() {
   };
 
   return (
-    <div className="flex h-[28rem] w-72 flex-col space-y-4 bg-black/30 p-3 text-[#f7c35b] backdrop-blur-md">
+    <div className="flex h-[28rem] w-72 flex-col space-y-4 bg-black/30 p-3 text-[#c8a84b] backdrop-blur-md">
       <span className="text-xl font-semibold">
         Men&apos;s & Women&apos;s Cloths
       </span>
@@ -57,7 +57,7 @@ function ClothsCard() {
       </div>
       <p>
         <span
-          className="cursor-pointer font-semibold text-[#CFCFCF] underline transition hover:text-[#f7c35b]"
+          className="cursor-pointer font-semibold text-[#CFCFCF] underline transition hover:text-[#c8a84b]"
           onClick={() => handleItemsClick("cloths-and-footwear")}
         >
           Show More
