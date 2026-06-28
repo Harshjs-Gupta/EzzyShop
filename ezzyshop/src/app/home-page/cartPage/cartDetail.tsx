@@ -100,11 +100,13 @@ const CartDetail: React.FC<{ products: Product }> = ({ products }) => {
     console.log(data);
 
     const paymentData = {
-      key: "rzp_test_yfTOicMGQedbRI", // Ensure key is a string
+      key: "rzp_test_SeYgID9twpQxbq", // Ensure key is a string
       amount: Number(data.amount), // Ensure amount is a number
       currency: "INR",
       order_id: data.id || "", // Ensure order_id is a string
-      name: name || undefined, // Make optional
+      name: "EzzyShop", // <-- brand/store name
+      description: "Secure Payment", // <-- subtitle in checkout
+      image: "/EzzyShopLogo.png",
       prefill: {
         name: name || undefined, // Make optional
         email: email || undefined, // Make optional
@@ -163,18 +165,18 @@ const CartDetail: React.FC<{ products: Product }> = ({ products }) => {
     payment.open();
   }
 
-  const getBeforePrice = (value: number) => {
-    const str = value.toString();
+  // const getBeforePrice = (value: number) => {
+  //   const str = value.toString();
 
-    // Case 1: duplicated (6990069900 → 69900)
-    const half = str.length / 2;
-    if (str.length % 2 === 0 && str.slice(0, half) === str.slice(half)) {
-      return Number(str.slice(0, half));
-    }
+  //   // Case 1: duplicated (6990069900 → 69900)
+  //   const half = str.length / 2;
+  //   if (str.length % 2 === 0 && str.slice(0, half) === str.slice(half)) {
+  //     return Number(str.slice(0, half));
+  //   }
 
-    // Case 2: mixed (6990009700 → 69900)
-    return Number(str.slice(0, -4)); // remove last 4 digits (saving part)
-  };
+  //   // Case 2: mixed (6990009700 → 69900)
+  //   return Number(str.slice(0, -4)); // remove last 4 digits (saving part)
+  // };
 
   return (
     <div className="mb-5 flex h-auto w-full flex-col items-center gap-2 p-2 sm:flex-row">
@@ -193,7 +195,7 @@ const CartDetail: React.FC<{ products: Product }> = ({ products }) => {
         </TransformWrapper>
       </div>
       <div className="flex w-auto flex-col gap-3 p-3 sm:w-full">
-        <div className="flex flex-col gap-3 text-left text-[#d0a348]">
+        <div className="flex flex-col gap-3 text-left text-gold-default">
           <div className="flex gap-2">
             <span className="text-sm">Sponsored</span>
             <Image src={info} alt="info" className="h-5 w-5" />
@@ -207,48 +209,60 @@ const CartDetail: React.FC<{ products: Product }> = ({ products }) => {
               {before_price !== 0 && (
                 <div className="flex items-center justify-center gap-1">
                   <span className="text-[12px] line-through sm:text-xl">
-                    {quantity === 1
+                    {/* {quantity === 1
                       ? `M.R.P: Rs ${Math.trunc(getBeforePrice(before_price))}`
-                      : `M.R.P Rs ${Math.trunc(getBeforePrice(quantityBeforePrice))}`}
+                      : `M.R.P Rs ${Math.trunc(getBeforePrice(quantityBeforePrice))}`} */}
+                    {quantity === 1
+                      ? `M.R.P: Rs ${Math.trunc(before_price)}`
+                      : `M.R.P Rs ${Math.trunc(quantityBeforePrice)}`}
                   </span>
                 </div>
               )}
               <span className="text-[12px] font-semibold sm:text-xl">
-                {savings_percent !== 0 &&
-                  `(${Math.trunc(((getBeforePrice(before_price) - current_price) / getBeforePrice(before_price)) * 100)} % off)`}
+                {/* {savings_percent !== 0 &&
+                  `(${Math.trunc(((getBeforePrice(before_price) - current_price) / getBeforePrice(before_price)) * 100)} % off)`} */}
+                {/* {savings_percent !== 0 && */}(
+                {Math.trunc(
+                  ((before_price - current_price) / before_price) * 100,
+                )}
+                % off)
+                {/* } */}
               </span>
             </div>
           </div>
-          {savings_amount !== 0 && (
-            <span>
-              {quantity === 1
+          {/* {savings_amount !== 0 && ( */}
+          <span>
+            {/* {quantity === 1
                 ? `Save Rs ${getBeforePrice(before_price) - current_price}`
-                : `Save Rs ${getBeforePrice(quantityBeforePrice) - quantityPrice}`}
-            </span>
-          )}
+                : `Save Rs ${getBeforePrice(quantityBeforePrice) - quantityPrice}`} */}
+            {quantity === 1
+              ? `Save Rs ${before_price - current_price}`
+              : `Save Rs ${quantityBeforePrice - quantityPrice}`}
+          </span>
+          {/* )} */}
           <div className="z-2 flex items-center gap-5 sm:gap-72 md:gap-10 xl:gap-72">
             <Script
               type="text/javascript"
               src="https://checkout.razorpay.com/v1/checkout.js"
             />
             <button
-              className="h-8 w-24 rounded-full bg-[#d0a348] text-sm font-bold text-black active:bg-[#d0a348]/80"
+              className="h-8 w-24 rounded-full cursor-pointer bg-gold-default text-sm font-bold text-luxury-black active:bg-gold-light/80"
               onClick={createOrder}
             >
               Buy Now
             </button>
             <div className="flex">
               <button
-                className="w-5 rounded-l-lg bg-[#d0a348] text-lg font-semibold text-black active:bg-[#ffc758]"
+                className="w-5 rounded-l-lg bg-gold-default cursor-pointer text-lg font-semibold text-luxury-black active:bg-[#ffc758]"
                 onClick={handleMinusQuantity}
               >
                 -
               </button>
-              <span className="w-20 bg-black/40 text-center text-lg font-semibold">
+              <span className="w-20 bg-luxury-black text-luxury-black/40 text-center text-lg font-semibold">
                 {quantity}
               </span>
               <button
-                className="w-5 rounded-r-lg bg-[#d0a348] text-lg font-semibold text-black active:bg-[#ffc758]"
+                className="w-5 rounded-r-lg bg-gold-default cursor-pointer text-lg font-semibold text-luxury-black active:bg-[#ffc758]"
                 onClick={handleAddQuantity}
               >
                 +
