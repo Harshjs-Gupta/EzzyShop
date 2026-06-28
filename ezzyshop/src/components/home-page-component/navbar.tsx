@@ -10,6 +10,7 @@ import { useRouter } from "next/navigation";
 import { useLoading } from "@/app/loadingContext";
 import useFetch from "@/app/hooks/useFetch";
 import { useState } from "react";
+import { FaBars } from "react-icons/fa";
 
 function Navbar() {
   const [searchTerm, setSearchTerm] = useState<string | null>(null);
@@ -37,8 +38,9 @@ function Navbar() {
 
   return (
     <>
-      <nav className="nav-background hidden h-14 w-full items-center justify-between px-2 sm:flex">
-        <Link href="/home-page">
+      {/* // ! Desktop view 👇 */}
+      <nav className="hidden h-14 bg-luxury-dark w-full items-center justify-between px-2 sm:flex sticky top-0 z-20">
+        <Link href={`/home-page`}>
           <Image
             src={appName}
             alt="appName"
@@ -47,34 +49,34 @@ function Navbar() {
         </Link>
         <SearchBar onItemsSearch={handleItemsClick} />
         <div className="flex max-w-fit items-center justify-center space-x-5 text-gray-300">
-          <div className="flex items-center justify-center space-x-5 text-base sm:text-[10px] md:text-sm xl:text-lg">
+          <div className="flex items-center justify-center text-gold-default space-x-5 text-base sm:text-[10px] md:text-sm xl:text-lg">
             <Link
-              href="/home-page"
+              href={`/home-page`}
               prefetch={true}
-              className="font-semibold transition hover:scale-105 hover:text-[#d0a348] active:scale-95"
+              className="font-semibold transition hover:text-gold-light active:scale-95"
             >
               Home
             </Link>
             <Link
-              href={"/home-page/${searchTerm}"}
+              href={`/home-page/${searchTerm}`}
               prefetch={true}
-              className="cursor-pointer font-semibold transition hover:scale-105 hover:text-[#d0a348] active:scale-95"
+              className="cursor-pointer font-semibold transition hover:text-gold-light active:scale-95"
               onClick={() => handleItemsClick("smartPhones")}
             >
               Mobiles
             </Link>
             <Link
-              href={"/home-page/${searchTerm}"}
+              href={`/home-page/${searchTerm}`}
               prefetch={true}
-              className="cursor-pointer font-semibold transition hover:scale-105 hover:text-[#d0a348] active:scale-95"
+              className="cursor-pointer font-semibold transition hover:text-gold-light active:scale-95"
               onClick={() => handleItemsClick("kitchen products")}
             >
               Kitchen
             </Link>
             <Link
-              href="/home-page/order-page"
+              href={`/home-page/order-page`}
               prefetch={true}
-              className="cursor-pointer font-semibold transition hover:scale-105 hover:text-[#d0a348] active:scale-95"
+              className="cursor-pointer font-semibold transition hover:text-gold-light active:scale-95"
             >
               Order
             </Link>
@@ -96,12 +98,12 @@ function Navbar() {
           </div>
         </div>
       </nav>
-      {/* ! Mobile view 👇 */}
-      <nav className="nav-background fixed z-20 flex h-48 w-screen flex-col gap-5 px-2 sm:hidden">
+      {/* // ! Mobile view 👇 */}
+<nav className="fixed z-20 flex h-48 w-screen flex-col gap-5 px-2 sm:hidden bg-luxury-dark">
         <div className="flex items-center justify-between pt-1">
-          <div className="flex items-center justify-center gap-5">
-            <Image src={menuIcon} alt="menuIcon" className="h-12 w-10" />
-            <Image src={appName} alt="appName" className="h-13 w-28" />
+          <div className="flex items-center gap-5">
+            <FaBars className="text-2xl"/>
+            <Image src={appName} alt="appName" className="h-13 w-28 object-cover" />
           </div>
           <div className="flex items-center justify-center gap-5">
             <div onClick={handleLogOut}>
@@ -123,32 +125,32 @@ function Navbar() {
         <div className="flex w-screen items-center justify-center space-x-5">
           <div className="flex items-center justify-center space-x-5">
             <Link
-              href="/home-page"
+              href={`/home-page`}
               prefetch={true}
-              className="text-md font-semibold transition hover:scale-105 hover:text-[#d0a348] active:scale-95"
+              className="text-md font-semibold transition hover:scale-105 active:scale-95"
             >
               Home
             </Link>
             <Link
-              href={"/home-page/${searchTerm}"}
+              href={`/home-page/${searchTerm}`}
               prefetch={true}
-              className="cursor-pointer text-lg font-semibold transition hover:scale-105 hover:text-[#d0a348] active:scale-95"
+              className="cursor-pointer text-lg font-semibold transition hover:scale-105 active:scale-95"
               onClick={() => handleItemsClick("smartPhones")}
             >
               Mobiles
             </Link>
             <Link
-              href={"/home-page/${searchTerm}"}
+              href={`/home-page/${searchTerm}`}
               prefetch={true}
-              className="cursor-pointer text-lg font-semibold transition hover:scale-105 hover:text-[#d0a348] active:scale-95"
+              className="cursor-pointer text-lg font-semibold transition hover:scale-105 active:scale-95"
               onClick={() => handleItemsClick("home and kitchen products")}
             >
               Home & Kitchen
             </Link>
             <Link
-              href="/home-page/order-page"
+              href={`/home-page/order-page`}
               prefetch={true}
-              className="text-md font-semibold transition hover:scale-105 hover:text-[#d0a348] active:scale-95"
+              className="text-md font-semibold transition hover:scale-105 active:scale-95"
             >
               Order
             </Link>
