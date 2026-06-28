@@ -8,8 +8,6 @@ import perfume from "../../../public/image/perfume.jpg";
 import sofa from "../../../public/image/sofa.webp";
 import ceilingLight from "../../../public/image/ceilingLight.webp";
 import WatchCard from "@/components/home-page-component/WatchCard";
-import Navbar from "@/components/home-page-component/navbar";
-// import Footer from "@/components/home-page-component/Footer";
 
 function HomePage() {
   return (

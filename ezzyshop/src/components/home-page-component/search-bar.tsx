@@ -1,6 +1,4 @@
 "use client";
-import Image from "next/image";
-import search_icon from "@/assets/icon/search_icon.png";
 import { FormEvent, useState } from "react";
 import {FaSearch} from "react-icons/fa"
 

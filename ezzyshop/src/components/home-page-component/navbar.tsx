@@ -5,7 +5,6 @@ import SearchBar from "./search-bar";
 import Link from "next/link";
 import cart from "@/assets/logo/cart.png";
 import dummy_profile from "../../../public/image/dummy-profile.jpg";
-import menuIcon from "@/assets/icon/menu.png";
 import { useRouter } from "next/navigation";
 import { useLoading } from "@/app/loadingContext";
 import useFetch from "@/app/hooks/useFetch";

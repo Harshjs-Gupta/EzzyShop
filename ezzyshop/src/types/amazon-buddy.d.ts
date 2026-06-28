@@ -19,5 +19,9 @@ declare module "@webdeb/amazon-buddy" {
     country?: string;
   }): Promise<ProductResponse>;
 
-  export default { products };
+  const amazonBuddy: {
+    products: typeof products;
+  };
+
+  export default amazonBuddy;
 }

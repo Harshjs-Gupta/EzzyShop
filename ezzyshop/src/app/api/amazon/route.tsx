@@ -80,9 +80,9 @@ export async function GET(request: Request) {
       keyword: searchTerm,
       result: data.data?.products || [],
     });
-  } catch (error: any) {
+  } catch (error: unknown) {
     return NextResponse.json(
-      { error: "Failed to fetch data.", details: error?.message },
+      { error: "Failed to fetch data.",  details: error instanceof Error ? error.message : "Unknown error", },
       { status: 500 },
     );
   }
