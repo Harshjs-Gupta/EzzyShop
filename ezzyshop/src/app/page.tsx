@@ -11,22 +11,22 @@ export default function Home() {
   const [isRedirecting, setIsRedirecting] = useState(false);
 
   useEffect(() => {
-    const storedEmail = localStorage.getItem("email");
+    const storedUser = JSON.parse(localStorage.getItem("user"));
 
-    if (storedEmail) {
+    if (storedUser?.email) {
       setIsRedirecting(true);
 
       setTimeout(() => {
         router.push("/home-page");
-      }, 3000);
+      }, 800);
     }
   }, [router]);
 
   if (isRedirecting) {
     return (
-      <div className="flex h-screen flex-col items-center justify-center gap-3 bg-gradient-to-r from-[#3f3f3f] to-[#101010]">
-        <div className="h-10 w-10 animate-spin rounded-full border-4 border-[#d0a348] border-t-transparent"></div>
-        <h1 className="text-2xl font-bold text-[#d0a348]">
+      <div className="flex h-screen flex-col items-center justify-center gap-3 bg-linear-to-r from-luxury-dark to-luxury-black">
+        <div className="h-10 w-10 animate-spin rounded-full border-4 border-gold-default border-t-transparent"></div>
+        <h1 className="text-2xl font-bold text-gold-default">
           You are logged in.
         </h1>
         <span className="animate-pulse text-3xl font-bold text-white">
@@ -52,15 +52,15 @@ export default function Home() {
         <Link
           href="/sign-up-page"
           prefetch={true}
-          className="animation sign-up-button mt-4 flex h-10 w-32 items-center justify-center rounded-full font-bold"
+          className="animation sign-up-button text-luxury-black mt-4 flex h-10 w-32 items-center justify-center rounded-full font-bold"
         >
           Sign up
         </Link>
       </div>
       <div className="animation relative mt-5 flex w-full items-center justify-center space-x-2 font-bold text-white sm:mt-0">
-        <span className="text-3xl font-light">Ezzy</span>
+        <span className="text-3xl text-gold-default font-light">Ezzy</span>
         <div className="relative flex flex-col items-center">
-          <span className="text-3xl font-light">Shop</span>
+          <span className="text-3xl text-gold-default font-light">Shop</span>
           <Image
             src={small_underline}
             alt="underline"
@@ -95,7 +95,7 @@ export default function Home() {
         <Link
           href="/log-in-page"
           prefetch={true}
-          className="log-in-button mt-4 flex h-10 w-32 items-center justify-center rounded-full font-bold"
+          className="log-in-button mt-4 flex text-luxury-black h-10 w-32 items-center justify-center rounded-full font-bold"
         >
           Log in
         </Link>
