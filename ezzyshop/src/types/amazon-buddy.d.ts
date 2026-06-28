@@ -1,3 +1,4 @@
+/* eslint-disable import/no-anonymous-default-export */
 declare module "@webdeb/amazon-buddy" {
   interface Product {
     title: string;
