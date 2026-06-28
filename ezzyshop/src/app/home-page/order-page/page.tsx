@@ -5,7 +5,6 @@ import { collection, getDocs } from "firebase/firestore";
 import { database } from "@/lib/firebase";
 import { useLoading } from "@/app/loadingContext";
 import OrderDetail from "./orderDetail";
-import Navbar from "@/components/home-page-component/navbar";
 
 type OrderProduct = {
   amount: number;
@@ -84,8 +83,7 @@ function OrderPage() {
 
   return (
     <>
-      <Navbar />
-      <div className="relative top-48 flex h-screen w-screen flex-col gap-5 overflow-scroll bg-gradient-to-r from-[#3f3f3f] to-[#101010] pb-96 sm:relative sm:top-0 sm:pb-20">
+      <div className="relative top-48 flex h-screen w-screen flex-col gap-5 overflow-scroll overflow-x-hidden bg-linear-to-r from-luxury-dark to-luxury-card pb-96 sm:relative sm:top-0 sm:pb-20">
         <div className="p-3">
           <span className="text-2xl font-semibold text-[#d0a348]">
             Order Details
