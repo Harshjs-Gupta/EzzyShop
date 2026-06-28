@@ -9,17 +9,17 @@ import sofa from "../../../public/image/sofa.webp";
 import ceilingLight from "../../../public/image/ceilingLight.webp";
 import WatchCard from "@/components/home-page-component/WatchCard";
 import Navbar from "@/components/home-page-component/navbar";
+// import Footer from "@/components/home-page-component/Footer";
 
 function HomePage() {
   return (
-    <>
-      <Navbar />
-      <main className="main-page absolute top-48 flex h-screen w-screen flex-col items-center gap-5 overflow-scroll overflow-x-hidden p-5 pb-60 sm:relative sm:top-0 sm:pb-20">
-        <div className="flex flex-col items-center justify-center pt-3 text-4xl font-bold capitalize text-white md:text-5xl">
-          <span>Discover & shop</span>
-          <span>the trend</span>
+    <main className="">
+     <section className="main-page flex min-h-screen w-full flex-col items-center gap-5 p-5 pb-10 pt-48 sm:pt-5">
+        <div className="flex flex-col font-sans items-center justify-center pt-3 text-4xl font-bold text-white capitalize md:text-5xl">
+          <span className="">Discover & shop</span>
+          <span className="">the trend</span>
         </div>
-        <main className="main-container grid grid-flow-row grid-cols-1 gap-5 sm:flex sm:flex-col md:grid md:grid-cols-2 lg:grid-cols-4">
+        <main className="w-full h-auto grid grid-flow-row place-items-center grid-cols-1 gap-5 sm:flex sm:flex-col md:grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
           <ElectronicItemsCard />
           <GamingItemsCard />
           <WatchCard />
@@ -49,8 +49,8 @@ function HomePage() {
             keyword="CeilingLight"
           />
         </main>
-      </main>
-    </>
+      </section>
+    </main>
   );
 }
 
